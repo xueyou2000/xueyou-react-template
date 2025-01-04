@@ -1,0 +1,58 @@
+{
+  "name": "@framework/lint-set",
+  "version": "0.0.1",
+  "description": "eslint+stylelint+prettier配置",
+  "author": "XueYou",
+  "license": "ISC",
+  "packageManager": "pnpm@9.0.0",
+  "main": "index.mjs",
+  "type": "module",
+  "exports": {
+    "require": "./index.cjs",
+    "import": "./index.mjs"
+  },
+  "files": [
+    "eslint.config.mjs",
+    "index.cjs",
+    "index.mjs",
+    "stylelint.config.mjs",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@eslint/compat": "^1.2.4",
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "branchlint": "^0.0.2",
+    "eslint": "^9.17.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "lint-staged": "^15.3.0",
+    "postcss": "^8.4.49",
+    "postcss-scss": "^4.0.9",
+    "prettier-eslint": "^16.3.0",
+    "stylelint": "^16.12.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-prettier": "^5.0.2",
+    "stylelint-scss": "^6.10.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.19.0"
+  },
+  "peerDependencies": {
+    "branchlint": "^0.0.2",
+    "lint-staged": "^15.3.0",
+    "typescript": "^5.7.2",
+    "stylelint": "^16.12.0"
+  }
+}

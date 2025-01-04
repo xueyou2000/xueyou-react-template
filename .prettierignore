@@ -1,0 +1,16 @@
+/dist/*
+.local
+.output.js
+/node_modules/**
+.turbo
+
+**/*.svg
+**/*.sh
+
+/public/*
+/dist/*
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

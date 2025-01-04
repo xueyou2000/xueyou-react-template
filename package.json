@@ -1,0 +1,84 @@
+{
+  "private": false,
+  "name": "xueyou-react-template",
+  "version": "0.0.1",
+  "description": "react+react-router项目模板",
+  "author": "XueYou",
+  "license": "ISC",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,ts,tsx,md,css,scss}\"",
+    "postinstall": "turbo stub",
+    "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "dev": "turbo dev --log-prefix=none",
+    "build": "turbo build --log-prefix=none"
+  },
+  "files": [
+    "lib",
+    "package.json",
+    "tsconfig.json",
+    "README.md"
+  ],
+  "keywords": [
+    "TurboRepo",
+    "TypeScript",
+    "React",
+    "React-Router"
+  ],
+  "branchlint": {
+    "allowed": [
+      "master",
+      "main",
+      "test",
+      "dev",
+      "next",
+      "preonline"
+    ],
+    "disallowed": [],
+    "prefixes": [
+      "feature",
+      "hotfix",
+      "private"
+    ],
+    "separator": [
+      "/"
+    ],
+    "msgBranchDisallowed": "Please make sure your branch splitter is '/' and it starts with feature, hotfix, or private"
+  },
+  "lint-staged": {
+    "*.{js,mjs,jsx,ts,tsx}": [
+      "eslint --fix --max-warnings 0"
+    ],
+    "*.{scss,css,less,sass}": [
+      "stylelint --fix --max-warnings 0",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": "./framework/lint-set/commitlint.config.mjs"
+  },
+  "stylelint": {
+    "extends": "./framework/lint-set/stylelint.config.mjs",
+    "ignorePath": "./framework/lint-set/.stylelintignore"
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.6.7"
+  },
+  "devDependencies": {
+    "@framework/lint-set": "workspace:^",
+    "branchlint": "^0.0.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "stylelint": "^16.12.0",
+    "turbo": "^2.3.3"
+  },
+  "dependencies": {
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "private": true,
+  "name": "@application/fe",
+  "version": "0.0.1",
+  "description": "react + react-router project",
+  "author": "XueYou",
+  "license": "ISC",
+  "packageManager": "pnpm@9.0.0",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {
+    "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "dev": "env-cmd -e dev -r ./envs.js rsbuild dev -c ./build/rsbuild.dev.config.ts",
+    "build": "env-cmd -e prod -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts",
+    "inspect": "env-cmd -e prod -r ./envs.js rsbuild inspect -c ./build/rsbuild.prod.config.ts",
+    "analyze": "env-cmd -e prod -r ./envs.js cross-env RSDOCTOR=1 rsbuild build -c ./build/rsbuild.prod.config.ts"
+  },
+  "files": [
+    "lib",
+    "package.json",
+    "tsconfig.json",
+    "README.md"
+  ],
+  "keywords": [
+    "React",
+    "I18n",
+    "TurboRepo",
+    "TypeScript",
+    "Web",
+    "H5"
+  ],
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.6.7"
+  },
+  "stylelint": {
+    "extends": "../framework/lint-set/stylelint.config.mjs",
+    "ignorePath": "../framework/lint-set/.stylelintignore"
+  },
+  "devDependencies": {
+    "@framework/build": "workspace:^",
+    "@framework/lint-set": "workspace:^",
+    "@rsbuild/core": "^1.1.13",
+    "@rsbuild/plugin-react": "^1.1.0",
+    "@rsbuild/plugin-sass": "^1.1.2",
+    "@rsbuild/plugin-type-check": "^1.2.0",
+    "@rsdoctor/rspack-plugin": "^0.4.12",
+    "@rspack/core": "^1.1.8",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@types/react-router": "^5.1.20",
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
+    "fast-glob": "^3.3.2",
+    "stylelint": "^16.12.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "consola": "^3.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.1.1"
+  }
+}
