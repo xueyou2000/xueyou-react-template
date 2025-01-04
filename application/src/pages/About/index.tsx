@@ -24,6 +24,7 @@ function sleep(ms: number) {
 export async function loader(args: LoaderFunctionArgs<AboutRouteParams>): Promise<LoaderData> {
   // 注意这里直接返回promise, 在About组件中使用Await组件来获取数据
   const reviews = sleep(3500)
+
   return {
     date: new Date().toLocaleString(),
     url: args.request?.url,

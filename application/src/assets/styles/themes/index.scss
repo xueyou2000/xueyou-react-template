@@ -27,26 +27,7 @@ body {
   color: var(--text-primary);
   hyphens: auto;
   background-color: var(--bg-primary);
-  transition:
-    background-color 0.3s ease-out,
-    color 0.3s ease-out;
+  transition: 0.3s ease-out;
   font-display: swap;
   accent-color: var(--color-primary);
-}
-
-.btn {
-  display: block;
-  margin: 10px;
-  padding: 10px 16px;
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: var(--color-primary);
-    opacity: 0.85;
-  }
 }

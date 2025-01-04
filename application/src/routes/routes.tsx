@@ -1,12 +1,12 @@
 import { RouteObject } from 'react-router'
 
-import { DefaultHydrateFallback, ErrorBoundary } from '@/components'
+import { LoadingFallback, ErrorBoundary } from '@/components'
 
 export const routes: RouteObject[] = [
   {
     path: '/',
     errorElement: <ErrorBoundary />,
-    HydrateFallback: DefaultHydrateFallback,
+    HydrateFallback: LoadingFallback,
     children: [
       {
         index: true,
@@ -34,6 +34,6 @@ export const routes: RouteObject[] = [
   {
     path: '*',
     element: <ErrorBoundary />,
-    HydrateFallback: DefaultHydrateFallback
+    HydrateFallback: LoadingFallback
   }
 ]

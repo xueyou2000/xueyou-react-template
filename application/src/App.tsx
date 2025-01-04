@@ -5,8 +5,9 @@ import { RouterProvider } from 'react-router/dom'
 import { Theme } from '@radix-ui/themes'
 
 import { assetPrefix } from '@/constants/env'
-import { routes } from './routes/routes'
-import { useAppContext } from './context/AppContext'
+import { routes } from '@/routes/routes'
+import { useAppContext } from '@/context/AppContext'
+import { LoadingFallback } from '@/components/LoadingFallback'
 
 import '@radix-ui/themes/styles.css'
 import '@/assets/styles/reset.scss'
@@ -24,7 +25,7 @@ export function App() {
   return (
     <StrictMode>
       <Theme appearance={theme}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoadingFallback text="页面加载中..." />}>
           <RouterProvider router={router} />
         </Suspense>
       </Theme>

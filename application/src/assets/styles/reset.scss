@@ -88,3 +88,11 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   appearance: textfield;
 }
+
+// reset radix-ui
+@media (hover: hover) {
+  /* stylelint-disable-next-line selector-class-pattern */
+  .rt-BaseButton:hover {
+    cursor: pointer;
+  }
+}

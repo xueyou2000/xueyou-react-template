@@ -1,0 +1,22 @@
+@use '@/assets/styles/mixins' as *;
+
+.error-boundary-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+
+  &:focus {
+    outline: none;
+  }
+
+  .error-boundary-details {
+    max-height: min(400px, 50vh);
+    margin: 16px 0;
+    padding: 16px;
+    overflow-y: auto;
+    background-color: var(--bg-secondary);
+    border-radius: 6px;
+
+    @include hide-scrollbar;
+  }
+}

@@ -1,3 +1,3 @@
 export * from './ErrorBoundary'
-export * from './DefaultHydrateFallback'
+export * from './LoadingFallback'
 export * from './ThemeSwitch'

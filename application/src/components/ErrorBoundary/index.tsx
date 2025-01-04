@@ -1,32 +1,69 @@
 import React from 'react'
-import { useRouteError, isRouteErrorResponse } from 'react-router'
+import { useRouteError, isRouteErrorResponse, useNavigate } from 'react-router'
+import { AlertDialog, Button, Text, Code, Flex } from '@radix-ui/themes'
+import './styles.scss'
 
 export function ErrorBoundary() {
   const error = useRouteError()
-  // console.error(error)
+  const navigate = useNavigate()
 
-  if (isRouteErrorResponse(error)) {
-    return (
-      <div id="error-page">
-        <h1>Oops!</h1>
-        <h2>{error.status}</h2>
-        <p>Sorry, an unexpected error has occurred.</p>
-        {error.statusText && <p>{error.statusText}</p>}
-      </div>
-    )
-  } else if (error instanceof Error) {
-    return (
-      <div id="error-page">
-        <h1>Error</h1>
-        <p>{error.message}</p>
-        <p>The stack trace is:</p>
-        <pre>{error.stack}</pre>
-      </div>
-    )
+  const getErrorContent = () => {
+    if (isRouteErrorResponse(error)) {
+      return {
+        title: 'Oops!',
+        description: 'Sorry, an unexpected error has occurred.',
+        details: error.statusText,
+        status: error.status
+      }
+    } else if (error instanceof Error) {
+      return {
+        title: 'Error',
+        description: error.message,
+        details: error.stack
+      }
+    }
+    return {
+      title: 'Page Not Found',
+      description: 'The page you are looking for does not exist.'
+    }
   }
+
+  const errorContent = getErrorContent()
+
   return (
-    <div id="not-found-page">
-      <h1>Oops! Page not found</h1>
-    </div>
+    <AlertDialog.Root defaultOpen>
+      <AlertDialog.Content className="error-boundary-content">
+        <AlertDialog.Title>
+          {errorContent.title}
+          {errorContent.status && (
+            <Text color="red" className="error-status">
+              ({errorContent.status})
+            </Text>
+          )}
+        </AlertDialog.Title>
+
+        <AlertDialog.Description>{errorContent.description}</AlertDialog.Description>
+
+        {errorContent.details && (
+          <div className="error-boundary-details">
+            <Code>{errorContent.details}</Code>
+          </div>
+        )}
+
+        <Flex gap="3" mt="4" justify="end">
+          <AlertDialog.Action>
+            <Button variant="solid" onClick={() => navigate('/')}>
+              返回首页
+            </Button>
+          </AlertDialog.Action>
+        </Flex>
+
+        {/* <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '16px' }}>
+          <Button onClick={() => navigate('/')} variant="solid">
+            返回首页
+          </Button>
+        </div> */}
+      </AlertDialog.Content>
+    </AlertDialog.Root>
   )
 }

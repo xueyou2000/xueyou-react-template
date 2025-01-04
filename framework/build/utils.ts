@@ -10,15 +10,6 @@ export function getArgv(option: string, prefix = '') {
 }
 
 /**
- * 解析国家数组
- * @param localStr 本地配置字符串,  例如: "in,jp,kh,kh-en"
- */
-export function parseLocals(localStr?: string) {
-  if (!localStr) return []
-  return localStr.split(',').map((item) => item.trim())
-}
-
-/**
  * 获取环境变量配置
  * @description CLIENT_开头的环境变量将被用户客户端中，而不止是nodejs环境
  *
