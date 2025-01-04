@@ -1,3 +1,18 @@
+@use '@/assets/styles/mixins' as *;
+
 .index-page {
   color: var(--text-primary);
+  font-size: var(--text-base);
+
+  @include responsive(
+    (
+      'width': (
+        100%,
+        80%,
+        70%,
+        60%,
+        50%
+      )
+    )
+  );
 }
