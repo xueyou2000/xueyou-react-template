@@ -1,13 +1,30 @@
 @mixin theme-vars {
-  --color-primary: #007bff;
-  --color-secondary: #6c757d;
-  --color-success: #28a745;
-  --color-danger: #dc3545;
-  --color-warning: #ffc107;
-  --color-info: #17a2b8;
-  --color-light: #f8f9fa;
-  --color-dark: #343a40;
-  --color-white: #fff;
-  --color-black: #000;
-  --color-gray: #6c757d;
+  // 主要颜色
+  --color-primary: #1668dc;
+  --color-secondary: #8c959d;
+  --color-success: #49aa19;
+  --color-danger: #dc4446;
+  --color-warning: #d89614;
+  --color-info: #13849f;
+
+  // 背景色
+  --bg-primary: #141414;
+  --bg-secondary: #1f1f1f;
+  --bg-tertiary: #262626;
+
+  // 文字颜色
+  --text-primary: #ffffffe0;
+  --text-secondary: #ffffff73;
+  --text-tertiary: #ffffff40;
+
+  // 边框颜色
+  --border-color: #424242;
+  --border-color-light: #303030;
+
+  // 基础色
+  --color-light: #1f1f1f;
+  --color-dark: #f8f9fa;
+  --color-white: #000;
+  --color-black: #fff;
+  --color-gray: #8c959d;
 }

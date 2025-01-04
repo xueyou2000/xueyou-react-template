@@ -1,3 +1,9 @@
-const a = 'Xue You'
+import { createRoot } from 'react-dom/client'
+import { App } from './App'
 
-console.log(a)
+const container = document.getElementById('root')
+
+if (container) {
+  const root = createRoot(container)
+  root.render(<App />)
+}

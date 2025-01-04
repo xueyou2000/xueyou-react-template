@@ -72,10 +72,14 @@
     "npm": ">=9.6.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@framework/lint-set": "workspace:^",
+    "@types/node": "^22.10.5",
     "branchlint": "^0.0.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
     "stylelint": "^16.12.0",
     "turbo": "^2.3.3"
   },
