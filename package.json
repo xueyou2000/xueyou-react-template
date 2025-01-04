@@ -7,8 +7,9 @@
   "license": "ISC",
   "packageManager": "pnpm@9.0.0",
   "scripts": {
-    "format": "prettier --write \"**/*.{js,ts,tsx,md,css,scss}\"",
+    "prepare": "husky",
     "postinstall": "turbo stub",
+    "format": "prettier --write \"**/*.{js,ts,tsx,md,css,scss}\"",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
