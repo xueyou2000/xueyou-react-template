@@ -23,15 +23,13 @@ html[data-theme='dark'] {
   @include dark.theme-vars;
 }
 
-@media (prefers-color-scheme: dark) {
-  @include dark.theme-vars;
-}
-
 body {
   color: var(--text-primary);
   hyphens: auto;
   background-color: var(--bg-primary);
-  transition: all 0.3s ease-out;
+  transition:
+    background-color 0.3s ease-out,
+    color 0.3s ease-out;
   font-display: swap;
   accent-color: var(--color-primary);
 }

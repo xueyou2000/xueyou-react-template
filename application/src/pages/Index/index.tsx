@@ -1,9 +1,10 @@
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router'
+import { Link as RouterLink, LoaderFunctionArgs, useLoaderData } from 'react-router'
 
 import ThemeSwitch from '@/components/ThemeSwitch'
 
 import './index.scss'
 import { useMatchMedia } from '@/utils'
+import { Flex, Text, Button, Link } from '@radix-ui/themes'
 
 interface LoaderData {
   date: string
@@ -35,16 +36,27 @@ export default function Index() {
       <p>当前媒体类型 {media}</p>
       <button className="btn">按钮</button>
 
+      <Flex direction="column" gap="2">
+        <Text>Hello from Radix Themes :)</Text>
+        <Button>Let&apos;s go</Button>
+      </Flex>
+
       <menu>
         <ul>
           <li>
-            <Link to="/">Index</Link>
+            <Link asChild>
+              <RouterLink to="/">Index</RouterLink>
+            </Link>
           </li>
           <li>
-            <Link to="/home">Home</Link>
+            <Link asChild>
+              <RouterLink to="/home">Home</RouterLink>
+            </Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link asChild>
+              <RouterLink to="/about">About</RouterLink>
+            </Link>
           </li>
         </ul>
       </menu>
