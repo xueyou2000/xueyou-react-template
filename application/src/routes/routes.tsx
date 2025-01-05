@@ -33,7 +33,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: '*',
-    element: <ErrorBoundary />,
+    element: <ErrorBoundary pageNotFound />,
     HydrateFallback: LoadingFallback
   }
 ]

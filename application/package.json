@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@application/fe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react + react-router project",
   "author": "XueYou",
   "license": "ISC",

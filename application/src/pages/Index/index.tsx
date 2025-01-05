@@ -1,4 +1,5 @@
 import { Link as RouterLink, LoaderFunctionArgs, useLoaderData } from 'react-router'
+import React from 'react'
 
 import ThemeSwitch from '@/components/ThemeSwitch'
 
@@ -21,6 +22,16 @@ export const loader = async (args: LoaderFunctionArgs): Promise<LoaderData> => {
   }
 }
 
+function BuggyCounter() {
+  const [count, setCount] = React.useState(0)
+
+  if (count === 5) {
+    throw new Error('我崩溃了！')
+  }
+
+  return <Button onClick={() => setCount(count + 1)}>计数: {count}</Button>
+}
+
 export default function Index() {
   const data = useLoaderData() as LoaderData
   const media = useMatchMedia()
@@ -38,7 +49,7 @@ export default function Index() {
 
       <Flex direction="column" gap="2">
         <Text>Hello from Radix Themes :)</Text>
-        <Button>Let&apos;s go</Button>
+        <BuggyCounter />
       </Flex>
 
       <DropdownMenu.Root>

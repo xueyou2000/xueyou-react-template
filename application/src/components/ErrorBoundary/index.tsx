@@ -1,9 +1,13 @@
 import React from 'react'
 import { useRouteError, isRouteErrorResponse, useNavigate } from 'react-router'
-import { AlertDialog, Button, Text, Code, Flex } from '@radix-ui/themes'
+import { AlertDialog, Button, Text, Code, Flex, ScrollArea } from '@radix-ui/themes'
 import './styles.scss'
 
-export function ErrorBoundary() {
+export interface ErrorBoundaryProps {
+  pageNotFound?: boolean
+}
+
+export function ErrorBoundary({ pageNotFound = false }: ErrorBoundaryProps) {
   const error = useRouteError()
   const navigate = useNavigate()
 
@@ -22,10 +26,20 @@ export function ErrorBoundary() {
         details: error.stack
       }
     }
-    return {
-      title: 'Page Not Found',
-      description: 'The page you are looking for does not exist.'
+    if (pageNotFound) {
+      return {
+        title: 'Page Not Found',
+        description: 'The page you are looking for does not exist.'
+      }
     }
+    return {
+      title: 'Error',
+      description: 'An unexpected error occurred.'
+    }
+  }
+
+  function onReset() {
+    window.location.reload()
   }
 
   const errorContent = getErrorContent()
@@ -45,24 +59,23 @@ export function ErrorBoundary() {
         <AlertDialog.Description>{errorContent.description}</AlertDialog.Description>
 
         {errorContent.details && (
-          <div className="error-boundary-details">
+          <ScrollArea type="auto" scrollbars="vertical" className="error-boundary-details">
             <Code>{errorContent.details}</Code>
-          </div>
+          </ScrollArea>
         )}
 
         <Flex gap="3" mt="4" justify="end">
           <AlertDialog.Action>
-            <Button variant="solid" onClick={() => navigate('/')}>
+            <Button variant="soft" onClick={() => navigate('/')}>
               返回首页
             </Button>
           </AlertDialog.Action>
+          <AlertDialog.Action>
+            <Button variant="solid" onClick={onReset}>
+              重试
+            </Button>
+          </AlertDialog.Action>
         </Flex>
-
-        {/* <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '16px' }}>
-          <Button onClick={() => navigate('/')} variant="solid">
-            返回首页
-          </Button>
-        </div> */}
       </AlertDialog.Content>
     </AlertDialog.Root>
   )
