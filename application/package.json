@@ -14,11 +14,14 @@
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "dev": "env-cmd -e dev -r ./envs.js rsbuild dev -c ./build/rsbuild.dev.config.ts",
-    "build": "env-cmd -e prod -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts",
-    "preview": "env-cmd -e prod -r ./envs.js rsbuild preview",
-    "inspect": "env-cmd -e prod -r ./envs.js rsbuild inspect -c ./build/rsbuild.prod.config.ts",
-    "analyze": "env-cmd -e prod -r ./envs.js cross-env RSDOCTOR=1 rsbuild build -c ./build/rsbuild.prod.config.ts"
+    "dev": "env-cmd -e dev -r ./envs.js rsbuild dev -c ./build/rsbuild.dev.config.ts --environment web",
+    "build": "env-cmd -e prod -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts --environment web",
+    "build-all": "env-cmd -e prod -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts",
+    "inspect": "env-cmd -e prod -r ./envs.js rsbuild inspect -c ./build/rsbuild.prod.config.ts --environment web",
+    "dev:ssr": "env-cmd -e dev -r ./envs.js tsx ./build/ssr/ssr-preview-server.ts",
+    "build:ssr": "env-cmd -e prod -r ./envs.js tsx ./build/ssr/ssr-prod-server.ts",
+    "analyze": "env-cmd -e prod -r ./envs.js cross-env RSDOCTOR=1 rsbuild build -c ./build/rsbuild.prod.config.ts  --environment web",
+    "preview": "rsbuild preview"
   },
   "files": [
     "lib",
@@ -52,15 +55,18 @@
     "@rsbuild/plugin-type-check": "^1.2.0",
     "@rsdoctor/rspack-plugin": "^0.4.12",
     "@rspack/core": "^1.1.8",
+    "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
+    "express": "^4.21.2",
     "fast-glob": "^3.3.2",
     "react-scan": "^0.0.54",
     "stylelint": "^16.12.0",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
@@ -68,6 +74,7 @@
     "consola": "^3.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.4.0",
     "react-router": "^7.1.1",
     "zustand": "^5.0.2"

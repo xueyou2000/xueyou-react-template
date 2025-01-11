@@ -6,7 +6,15 @@
       "outputs": ["dist/**"],
       "cache": true
     },
+    "build:all": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "cache": true
+    },
     "preview": {},
+    "analyze": {},
+    "dev:ssr": {},
+    "build:ssr": {},
     "lint": {},
     "stub": {},
     "dev": {

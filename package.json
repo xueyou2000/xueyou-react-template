@@ -15,7 +15,11 @@
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "dev": "turbo dev --log-prefix=none",
     "build": "turbo build --log-prefix=none",
-    "preview": "turbo preview --log-prefix=none"
+    "preview": "turbo preview --log-prefix=none",
+    "analyze": "turbo analyze --log-prefix=none",
+    "dev:ssr": "turbo dev:ssr --log-prefix=none",
+    "build:ssr": "turbo build:ssr --log-prefix=none",
+    "build:all": "turbo build:all --log-prefix=none"
   },
   "files": [
     "lib",

@@ -1,23 +1,65 @@
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { BaseConfig } from '@framework/build'
 
-import { VERSION } from './utils'
+import { MANIFEST_NAME, SSR_RENDER_FILE, VERSION } from './utils'
 
 const config = defineConfig({
+  environments: {
+    web: {
+      source: {
+        entry: {
+          index: './src/index.tsx'
+        },
+        define: {
+          'process.env.VERSION': JSON.stringify(`${VERSION}`)
+        }
+      },
+      output: {
+        target: 'web'
+      },
+      html: {
+        template: './index.html',
+        title() {
+          return process.env.TITLE || ''
+        },
+        tags: [
+          (tags) => {
+            return [
+              ...tags,
+              {
+                tag: 'link',
+                publicPath: false,
+                append: false,
+                attrs: {
+                  href: `${process.env.CLIENT_ASSET_PREFIX}/${MANIFEST_NAME}`,
+                  ref: 'manifest'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    ssr: {
+      source: {
+        entry: {
+          index: SSR_RENDER_FILE
+        }
+      },
+      output: {
+        target: 'node',
+        distPath: {
+          root: 'dist/server'
+        }
+      },
+      html: {
+        template: '../index.html'
+      }
+    }
+  },
   source: {
     alias: {
       '@': './src'
-    },
-    entry: {
-      index: './src/index.tsx'
-    },
-    define: {
-      'process.env.VERSION': JSON.stringify(`${VERSION}`)
-    }
-  },
-  html: {
-    title() {
-      return process.env.TITLE || ''
     }
   }
 })

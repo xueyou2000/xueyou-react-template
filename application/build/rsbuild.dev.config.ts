@@ -3,7 +3,8 @@ import baseConfig from './rsbuild.base.config'
 
 const config = defineConfig({
   dev: {
-    lazyCompilation: true
+    // lazyCompilation开启后, 会造成使用tauri时, 不会自动渲染，除非手动在浏览器访问一次
+    lazyCompilation: false
   },
   server: {
     host: '0.0.0.0',

@@ -4,6 +4,11 @@
 export const isDevMode = import.meta.env.MODE === 'development'
 
 /**
+ * 是否是客户端模式
+ */
+export const hasWindowMode = typeof window !== 'undefined'
+
+/**
  * 路径前缀
  */
 export const assetPrefix = process.env.CLIENT_ASSET_PREFIX || '/'

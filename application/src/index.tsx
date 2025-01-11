@@ -1,11 +1,11 @@
-import { createRoot } from 'react-dom/client'
 import { scan } from 'react-scan'
 
-import { App } from './App'
-import { isDevMode } from './constants/env'
+import { routes } from './routes/routes'
+import { isDevMode, hasWindowMode } from './constants/env'
+import { setupClientApp } from './renders/ClientRender'
 
 if (isDevMode) {
-  if (typeof window !== 'undefined') {
+  if (hasWindowMode) {
     scan({
       enabled: true,
       log: false // logs render info to console (default: false)
@@ -13,9 +13,4 @@ if (isDevMode) {
   }
 }
 
-const container = document.getElementById('root')
-
-if (container) {
-  const root = createRoot(container)
-  root.render(<App />)
-}
+setupClientApp(routes)
