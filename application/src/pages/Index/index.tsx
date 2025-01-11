@@ -57,6 +57,9 @@ export default function Index() {
             <RouterLink to='/home'>Home</RouterLink>
           </li>
           <li>
+            <RouterLink to='/performance'>Performance</RouterLink>
+          </li>
+          <li>
             <RouterLink to='/about'>About</RouterLink>
           </li>
         </ul>

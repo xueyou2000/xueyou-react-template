@@ -7,6 +7,7 @@
 
 - 构建： Turborepo, RsBuild, PNPM多仓管理
 - 前端框架: React V19
+- 性能优化: React Scan
 - 状态管理: Zustand
 - 路由: React Router V7
 - 样式: SCSS

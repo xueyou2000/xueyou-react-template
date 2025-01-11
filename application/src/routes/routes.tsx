@@ -17,6 +17,10 @@ export const routes: RouteObject[] = [
         lazy: () => import(/* webpackChunkName: "home" */ '../pages/Home')
       },
       {
+        path: 'performance',
+        lazy: () => import(/* webpackChunkName: "PerformanceContrast" */ '../pages/PerformanceContrast')
+      },
+      {
         path: 'about',
         children: [
           {
