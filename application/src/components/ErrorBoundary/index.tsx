@@ -1,6 +1,5 @@
-import React from 'react'
 import { useRouteError, isRouteErrorResponse, useNavigate } from 'react-router'
-import { AlertDialog, Button, Text, Code, Flex, ScrollArea } from '@radix-ui/themes'
+import { FaHome, FaRedo } from 'react-icons/fa'
 import './styles.scss'
 
 export interface ErrorBoundaryProps {
@@ -21,7 +20,7 @@ export function ErrorBoundary({ pageNotFound = false }: ErrorBoundaryProps) {
       }
     } else if (error instanceof Error) {
       return {
-        title: 'Error',
+        title: 'Some thing went wrong',
         description: error.message,
         details: error.stack
       }
@@ -45,38 +44,26 @@ export function ErrorBoundary({ pageNotFound = false }: ErrorBoundaryProps) {
   const errorContent = getErrorContent()
 
   return (
-    <AlertDialog.Root defaultOpen>
-      <AlertDialog.Content className="error-boundary-content">
-        <AlertDialog.Title>
-          {errorContent.title}
-          {errorContent.status && (
-            <Text color="red" className="error-status">
-              ({errorContent.status})
-            </Text>
-          )}
-        </AlertDialog.Title>
+    <div className='error-boundary-content'>
+      <h1>{errorContent.title}</h1>
+      {errorContent.status && <h2 className='error-status'>({errorContent.status})</h2>}
+      <p className='error-description'>{errorContent.description}</p>
 
-        <AlertDialog.Description>{errorContent.description}</AlertDialog.Description>
+      {errorContent.details && (
+        <div className='error-boundary-details'>
+          <p>The stack trace is:</p>
+          <pre>{errorContent.details}</pre>
+        </div>
+      )}
 
-        {errorContent.details && (
-          <ScrollArea type="auto" scrollbars="vertical" className="error-boundary-details">
-            <Code>{errorContent.details}</Code>
-          </ScrollArea>
-        )}
-
-        <Flex gap="3" mt="4" justify="end">
-          <AlertDialog.Action>
-            <Button variant="soft" onClick={() => navigate('/')}>
-              返回首页
-            </Button>
-          </AlertDialog.Action>
-          <AlertDialog.Action>
-            <Button variant="solid" onClick={onReset}>
-              重试
-            </Button>
-          </AlertDialog.Action>
-        </Flex>
-      </AlertDialog.Content>
-    </AlertDialog.Root>
+      <div className='error-boundary-actions'>
+        <button type='button' onClick={() => navigate('/')}>
+          <FaHome style={{ marginRight: '5px' }} /> 返回首页
+        </button>
+        <button type='button' onClick={onReset}>
+          <FaRedo style={{ marginRight: '5px' }} /> 重试
+        </button>
+      </div>
+    </div>
   )
 }

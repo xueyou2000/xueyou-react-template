@@ -1,7 +1,7 @@
 @mixin theme-vars {
   // 主要颜色
-  --color-primary: var(--indigo-9);
-  --color-secondary: var(--indigo-12);
+  --color-primary: #3d63dd;
+  --color-secondary: #1d2e5c;
   --color-success: #52c41a;
   --color-danger: #ff4d4f;
   --color-warning: #faad14;
@@ -27,39 +27,4 @@
   --color-white: #fff;
   --color-black: #000;
   --color-gray: #6c757d;
-
-  // radix-ui 覆盖主题
-  // use https://www.radix-ui.com/colors/custom 工具创建主题色
-  --indigo-1: #fdfdfe;
-  --indigo-2: #f7f9ff;
-  --indigo-3: #edf2fe;
-  --indigo-4: #dfeaff;
-  --indigo-5: #d0dfff;
-  --indigo-6: #bdd1ff;
-  --indigo-7: #a6bff9;
-  --indigo-8: #87a5ef;
-  --indigo-9: #3d63dd;
-  --indigo-10: #3657c3;
-  --indigo-11: #395bc7;
-  --indigo-12: #1d2e5c;
-
-  /* stylelint-disable-next-line custom-property-empty-line-before */
-  --indigo-a1: #00008002;
-  --indigo-a2: #0040ff08;
-  --indigo-a3: #0047f112;
-  --indigo-a4: #0058ff20;
-  --indigo-a5: #0052ff2f;
-  --indigo-a6: #004eff42;
-  --indigo-a7: #0048ee59;
-  --indigo-a8: #0040dd78;
-  --indigo-a9: #0032d2c2;
-  --indigo-a10: #002ab3c9;
-  --indigo-a11: #002cb7c6;
-  --indigo-a12: #001347e2;
-
-  /* stylelint-disable-next-line custom-property-empty-line-before */
-  --indigo-contrast: #fff;
-  --indigo-surface: #f5f8ffcc;
-  --indigo-indicator: #3d63dd;
-  --indigo-track: #3d63dd;
 }

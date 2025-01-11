@@ -12,9 +12,10 @@
  */
 function base() {
   return {
-    TITLE: 'fe',
+    TITLE: 'react-template',
     /** 是否关闭console */
     CLIENT_DISABLED_CONSOLE: false,
+    /** 静态资源前缀 */
     CLIENT_ASSET_PREFIX: '/'
   }
 }

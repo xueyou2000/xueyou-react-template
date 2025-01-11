@@ -14,7 +14,8 @@
     "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "dev": "turbo dev --log-prefix=none",
-    "build": "turbo build --log-prefix=none"
+    "build": "turbo build --log-prefix=none",
+    "preview": "turbo preview --log-prefix=none"
   },
   "files": [
     "lib",

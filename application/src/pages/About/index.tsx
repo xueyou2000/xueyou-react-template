@@ -37,7 +37,7 @@ export default function About() {
   const { date, url, aboutId, reviews } = useLoaderData() as LoaderData
 
   return (
-    <div className="about-page">
+    <div className='about-page'>
       <Suspense fallback={<div>数据加载...</div>}>
         <Await resolve={reviews}>{(resolvedReviews) => <p>reviews: {resolvedReviews}</p>}</Await>
       </Suspense>
@@ -49,13 +49,13 @@ export default function About() {
       <menu>
         <ul>
           <li>
-            <Link to="/">Index</Link>
+            <Link to='/'>Index</Link>
           </li>
           <li>
-            <Link to="/home">Home</Link>
+            <Link to='/home'>Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to='/about'>About</Link>
           </li>
         </ul>
       </menu>

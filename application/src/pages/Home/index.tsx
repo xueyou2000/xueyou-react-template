@@ -21,20 +21,20 @@ export default function Home() {
   const data = useLoaderData() as LoaderData
 
   return (
-    <div className="home-page">
+    <div className='home-page'>
       <h1>Home {data?.date}</h1>
       <p>预加载数据 {data?.url}</p>
 
       <menu>
         <ul>
           <li>
-            <Link to="/">Index</Link>
+            <Link to='/'>Index</Link>
           </li>
           <li>
-            <Link to="/home">Home</Link>
+            <Link to='/home'>Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to='/about'>About</Link>
           </li>
         </ul>
       </menu>

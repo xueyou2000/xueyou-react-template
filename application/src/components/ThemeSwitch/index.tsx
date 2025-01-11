@@ -15,7 +15,7 @@ export default function ThemeSwitch() {
   }
 
   return (
-    <button className="theme-switch" onClick={toggleTheme}>
+    <button className='theme-switch' onClick={toggleTheme}>
       {theme === 'light' ? '🌙' : '☀️'}
     </button>
   )
