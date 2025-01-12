@@ -9,6 +9,12 @@
     "build:all": {
       "cache": true
     },
+    "build:github": {
+      "cache": true
+    },
+    "build:ssr:github": {
+      "cache": true
+    },
     "preview": {},
     "analyze": {},
     "dev:ssr": {},

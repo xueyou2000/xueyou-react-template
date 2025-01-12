@@ -3,15 +3,20 @@ import express from 'express'
 import type { Request, Response, NextFunction } from 'express'
 import { join } from 'node:path'
 
-import { __dirname, serverRenderExpress } from './ssr-base'
-import { RsbuildDevServer, SSRRenderModuleType } from './types'
+import { __dirname, getDevManifestJson, serverRenderExpress } from './ssr-base'
+import { ManifestJson, RsbuildDevServer, SSRRenderModuleType } from './types'
+
+let manifest: ManifestJson
 
 const serverRender = (serverAPI: RsbuildDevServer) => async (req: Request, res: Response, next: NextFunction) => {
   const SSRRenderModule = await serverAPI.environments.ssr.loadBundle('index')
 
-  serverRenderExpress(req, res, next, SSRRenderModule as SSRRenderModuleType, async () => {
-    const template = await serverAPI.environments.web.getTransformedHtml('index')
-    return template
+  serverRenderExpress(req, res, next, SSRRenderModule as SSRRenderModuleType, {
+    async getHtmlTemplate() {
+      const template = await serverAPI.environments.web.getTransformedHtml('index')
+      return template
+    },
+    manifest
   })
 }
 
@@ -47,6 +52,8 @@ export async function startDevServer() {
   })
 
   rsbuildServer.connectWebSocket({ server: httpServer })
+
+  manifest = await getDevManifestJson(rsbuildServer.port)
 
   return {
     close: async () => {

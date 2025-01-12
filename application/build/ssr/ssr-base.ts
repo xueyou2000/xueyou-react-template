@@ -1,11 +1,15 @@
+/// <reference types="../global" />
+
 import { createRequire } from 'node:module'
-import { dirname } from 'node:path'
+import { dirname, join } from 'node:path'
+import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { consola } from 'consola'
 import type { Request as ExpressRequest, Response, NextFunction } from 'express'
 import type { HelmetData, HelmetServerState } from 'react-helmet-async'
 
-import { GetHtmlTemplate, SSRRenderModuleType } from './types'
+import { ManifestJson, SSRRenderModuleType, SSRRenderOptions } from './types'
+import { BUILD_MANIFEST_NAME, CLIENT_ASSET_PREFIX } from '../utils'
 
 export const __filename = fileURLToPath(import.meta.url)
 export const __dirname = dirname(__filename)
@@ -20,16 +24,18 @@ export const require = createRequire(import.meta.url)
  * @param  getHtmlTemplate 获取html模板内容和(只有匹配路由成功才会调用，避免处理了其他静态资源而导致报错)
  * @returns 服务端渲染内容
  */
-export async function serverRender(fetchRequest: Request, SSRRenderModule: SSRRenderModuleType, getHtmlTemplate: GetHtmlTemplate) {
+export async function serverRender(fetchRequest: Request, SSRRenderModule: SSRRenderModuleType, options: SSRRenderOptions) {
   const helmetContext: HelmetData['context'] = { helmet: {} as HelmetServerState }
   const { pathname } = new URL(fetchRequest.url)
   const props = { url: pathname, helmetContext }
-  const isMatch = await SSRRenderModule.isMatchRoute(props)
+  const isMatch = await SSRRenderModule.isMatchRoute(props, CLIENT_ASSET_PREFIX)
 
   if (isMatch) {
-    const { html: htmlContent, preCssUrl } = await SSRRenderModule.renderHTMLByRequest({ ...props, fetchRequest })
+    // const manifest = await options.getManifestJson(fetchRequest)
+    const preCssUrl = options.manifest ? await SSRRenderModule.matchPreCssUrl(pathname, options.manifest) : ''
+    const htmlContent = await SSRRenderModule.renderHTMLByRequest({ ...props, fetchRequest })
     const helmet = helmetContext.helmet
-    const htmlTemplate = await getHtmlTemplate()
+    const htmlTemplate = await options.getHtmlTemplate()
 
     const link = preCssUrl ? `<link href="${preCssUrl}" rel="stylesheet" />` : ''
 
@@ -60,12 +66,13 @@ export async function serverRenderExpress(
   response: Response,
   next: NextFunction,
   SSRRenderModule: SSRRenderModuleType,
-  getHtmlTemplate: GetHtmlTemplate
+  options: SSRRenderOptions
 ) {
   const fetchRequest = createFetchRequest(request)
 
   // SSRRenderModule, htmlTemplate
-  const html = await serverRender(fetchRequest, SSRRenderModule, getHtmlTemplate)
+  // const manifest = await getManifestJsonByRequest(request)
+  const html = await serverRender(fetchRequest, SSRRenderModule, options)
   if (html) {
     const pathname = request.url
     consola.success(`服务端渲染成功: pathname=${pathname}`)
@@ -111,5 +118,27 @@ export function createFetchRequest(req: ExpressRequest) {
     init.body = req.body
   }
 
+  console.log('>>> url.href', url.href)
   return new Request(url.href, init)
+}
+
+export async function getDevManifestJson(port: number): Promise<ManifestJson> {
+  // 获取 manifestJson
+  const manifest = await fetch(`http:localhost:${port}${CLIENT_ASSET_PREFIX}${BUILD_MANIFEST_NAME}`)
+  try {
+    const manifestJson = await manifest.json()
+    return manifestJson || {}
+  } catch {
+    return { allFiles: [] }
+  }
+}
+
+export async function getProdManifestJson(distDir: string): Promise<ManifestJson> {
+  try {
+    const manifestContent = await readFile(join(distDir, BUILD_MANIFEST_NAME), 'utf-8')
+    return JSON.parse(manifestContent)
+  } catch {
+    console.error('Failed to read manifest.json')
+    return { allFiles: [] }
+  }
 }

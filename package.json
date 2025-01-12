@@ -19,7 +19,9 @@
     "analyze": "turbo analyze --log-prefix=none",
     "dev:ssr": "turbo dev:ssr --log-prefix=none",
     "build:ssr": "turbo build:ssr --log-prefix=none",
-    "build:all": "turbo build:all --log-prefix=none"
+    "build:all": "turbo build:all --log-prefix=none",
+    "build:github": "turbo build:github --log-prefix=none",
+    "build:ssr:github": "turbo build:ssr:github --log-prefix=none"
   },
   "files": [
     "lib",

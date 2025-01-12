@@ -14,6 +14,10 @@
 - 图标: React Icons
 - 代码规范: ESLint, Stylelint, Prettier, Husky, Commitlint, Branchlint
 
+- [x] 优化服务端渲染首加载css闪屏的问题
+- [x] 增加service-worker, manifest
+- [x] 主动构建全部页面, 发布github pages
+
 ## 使用方式
 
 ### 1. 安装依赖
@@ -71,18 +75,20 @@ pnpm build:ssr
 
 > 这只是一个用于演示的例子，实际项目中，可以改造express， 保留一个api服务，用于编译对应路径的html内容
 
-### 7. 配置whistle代理预览
+## 部署github pages
+
+> 注意： 由于whistle代理不支持像nginx一样，优先寻找.html后缀作为页面内容，所以需要手动配置代理。就如这里的performance路由一样。
+> 当然，为了完美，你也可以修改路由配置，给每一个路由配置一个 `path: 'performance.html'` 的路由配置，就能直接访问到服务端渲染的html内容。
 
 ```bash
+# 构建产物, 唯一的区别是env不同，CLIENT_ASSET_PREFIX会改为github仓库的名称
 pnpm build:github
+
+# 编译所有路由服务端渲染html
+pnpm build:ssr:github
 
 # whistle代理配置, 具体路径自行替换
 ^xueyou.com/xueyou-react-template/$  file://<D:/playground/xueyou-react-template/application/dist/index.html>
+^xueyou.com/xueyou-react-template/performance$  file://<D:/playground/xueyou-react-template/application/dist/performance.html>
 ^xueyou.com/xueyou-react-template/*** file://D:/playground/xueyou-react-template/application/dist/$1
 ```
-
-## todo
-
-- [x] 优化服务端渲染首加载css闪屏的问题
-- [x] 增加service-worker, manifest
-- [ ] 主动构建全部页面, 发布github pages

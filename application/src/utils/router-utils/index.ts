@@ -1,4 +1,3 @@
-import { assetPrefix } from '@/constants/env'
 import { RouteCommonProps } from '@/types'
 import { matchRoutes, RouteObject, RouteMatch } from 'react-router'
 
@@ -6,7 +5,7 @@ import { matchRoutes, RouteObject, RouteMatch } from 'react-router'
  * 路由是否匹配
  * @description 用于本地服务器根据路径判断是否服务端渲染，或者仅仅返回静态文件
  */
-export async function isMatchRoute(props: RouteCommonProps) {
+export async function isMatchRoute(props: RouteCommonProps, assetPrefix: string) {
   const { url } = props
   try {
     if (url === '/manifest.json') {
@@ -26,7 +25,7 @@ export async function isMatchRoute(props: RouteCommonProps) {
  * 预加载lazy路由
  * @description 此步骤非常重要, 不过没有此步骤，那么会保留服务端渲染的内容，客户端会又渲染一份dom!!!
  */
-export async function fixLazyRoutes(routes: RouteObject[]) {
+export async function fixLazyRoutes(routes: RouteObject[], assetPrefix: string) {
   // 确定是否有任何初始路由是惰性的
   const lazyMatches = matchRoutes(routes, window.location.pathname, assetPrefix)
 
@@ -53,7 +52,28 @@ export async function fixLazyRoutes(routes: RouteObject[]) {
  * 匹配最终路由
  * 原始matchRoutes方法会返回多个，包含父路由
  */
-export function matchBestRoute(routes: RouteObject[], url: string): RouteMatch<string, RouteObject> | null {
+export function matchBestRoute(routes: RouteObject[], url: string, assetPrefix: string): RouteMatch<string, RouteObject> | null {
   const matchRouteList = matchRoutes(routes, url, assetPrefix)
   return matchRouteList?.length ? matchRouteList[matchRouteList.length - 1] : null
+}
+
+/**
+ * 扁平提取路由paths
+ */
+export const flattenRoutes = (routes: Array<RouteObject>, parentPath: string = ''): string[] => {
+  let flatPaths: string[] = []
+
+  routes.forEach((route) => {
+    if (route.path === '*' || !route.path || route.path.includes(':')) {
+      return
+    }
+    const currentPath = `${parentPath}${route.path}`
+    flatPaths.push(currentPath)
+
+    if (route.children) {
+      flatPaths = flatPaths.concat(flattenRoutes(route.children, currentPath))
+    }
+  })
+
+  return flatPaths
 }

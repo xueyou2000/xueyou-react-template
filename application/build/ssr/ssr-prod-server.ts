@@ -5,18 +5,23 @@ import { join } from 'node:path'
 import type { Request, Response, NextFunction } from 'express'
 import { readFile } from 'node:fs/promises'
 
-import { __dirname, require, serverRenderExpress } from './ssr-base'
-import { SSRRenderModuleType } from './types'
+import { __dirname, getProdManifestJson, require, serverRenderExpress } from './ssr-base'
+import { ManifestJson, SSRRenderModuleType } from './types'
 
 const distDir = join(__dirname, '../../dist')
+
+let manifest: ManifestJson
 
 const serverRender = async (req: Request, res: Response, next: NextFunction) => {
   const moduleUrl = join(distDir, 'server/index.js')
   const SSRRenderModule = require(moduleUrl)
 
-  serverRenderExpress(req, res, next, SSRRenderModule as SSRRenderModuleType, async () => {
-    const template = await readFile(join(distDir, 'index.html'), 'utf-8')
-    return template
+  serverRenderExpress(req, res, next, SSRRenderModule as SSRRenderModuleType, {
+    async getHtmlTemplate() {
+      const template = await readFile(join(distDir, 'index.html'), 'utf-8')
+      return template
+    },
+    manifest
   })
 }
 
@@ -24,6 +29,8 @@ const port = process.env.PORT || 3000
 
 export async function preview() {
   const app = express()
+
+  manifest = await getProdManifestJson(distDir)
 
   app.get('*', (req, res, next) => {
     try {

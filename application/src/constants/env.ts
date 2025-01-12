@@ -1,3 +1,5 @@
+/// <reference types="@rsbuild/core/types" />
+
 /**
  * 是否开发模式
  */

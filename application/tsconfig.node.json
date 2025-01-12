@@ -14,19 +14,14 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES5",
     "lib": ["DOM", "ES2020"],
     "jsx": "react-jsx",
     "noEmit": true,
     "resolveJsonModule": true,
     "useDefineForClassFields": true,
     "allowImportingTsExtensions": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
     "moduleResolution": "node"
   },
-  "include": ["src"],
+  "include": ["build", "global.d.ts"],
   "exclude": ["**/node_modules", "**/.*/"]
 }
