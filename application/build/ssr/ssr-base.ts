@@ -27,15 +27,18 @@ export async function serverRender(fetchRequest: Request, SSRRenderModule: SSRRe
   const isMatch = await SSRRenderModule.isMatchRoute(props)
 
   if (isMatch) {
-    const htmlContent = await SSRRenderModule.renderHTMLByRequest({ ...props, fetchRequest })
+    const { html: htmlContent, preCssUrl } = await SSRRenderModule.renderHTMLByRequest({ ...props, fetchRequest })
     const helmet = helmetContext.helmet
     const htmlTemplate = await getHtmlTemplate()
+
+    const link = preCssUrl ? `<link href="${preCssUrl}" rel="stylesheet" />` : ''
+
     const html = htmlTemplate
       .replace('<!--app-content-->', htmlContent)
       .replace('<!--helmet.title-->', helmet?.title?.toString() || '')
       .replace('<!--helmet.priority-->', helmet?.priority?.toString() || '')
       .replace('<!--helmet.meta-->', helmet?.meta?.toString() || '')
-      .replace('<!--helmet.link-->', helmet?.link?.toString() || '')
+      .replace('<!--helmet.link-->', `${helmet?.link?.toString()}${link}` || link)
       .replace('<!--helmet.script-->', helmet?.script?.toString() || '')
       .replace('data-helmet-html-attributes', helmet?.htmlAttributes?.toString() || '')
     return html

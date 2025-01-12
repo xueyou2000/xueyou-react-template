@@ -1,6 +1,6 @@
 import { assetPrefix } from '@/constants/env'
 import { RouteCommonProps } from '@/types'
-import { matchRoutes, RouteObject } from 'react-router'
+import { matchRoutes, RouteObject, RouteMatch } from 'react-router'
 
 /**
  * 路由是否匹配
@@ -36,9 +36,9 @@ export async function fixLazyRoutes(routes: RouteObject[]) {
       const routeModule = await route.lazy!()
       Object.assign(route, { ...routeModule, lazy: undefined })
     }
-    if (route.children) {
-      await Promise.all(route.children.map(preloadLazyRoutes))
-    }
+    // if (route.children) {
+    //   await Promise.all(route.children.map(preloadLazyRoutes))
+    // }
   }
 
   // 在创建路由器之前加载惰性匹配并更新路由
@@ -47,4 +47,13 @@ export async function fixLazyRoutes(routes: RouteObject[]) {
   }
 
   return routes
+}
+
+/**
+ * 匹配最终路由
+ * 原始matchRoutes方法会返回多个，包含父路由
+ */
+export function matchBestRoute(routes: RouteObject[], url: string): RouteMatch<string, RouteObject> | null {
+  const matchRouteList = matchRoutes(routes, url, assetPrefix)
+  return matchRouteList?.length ? matchRouteList[matchRouteList.length - 1] : null
 }

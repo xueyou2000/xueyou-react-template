@@ -7,6 +7,6 @@ export type GetHtmlTemplate = () => Promise<string>
 export type RsbuildDevServer = Awaited<ReturnType<RsbuildInstance['createDevServer']>>
 
 export interface SSRRenderModuleType {
-  renderHTMLByRequest: (props: SSRRenderProps & { fetchRequest: Request }) => Promise<string>
+  renderHTMLByRequest: (props: SSRRenderProps & { fetchRequest: Request }) => Promise<{ html: string; preCssUrl?: string }>
   isMatchRoute: (props: RouteCommonProps) => Promise<boolean>
 }

@@ -61,7 +61,7 @@ pnpm dev:ssr
 
 ```bash
 # 首先构建全部
-pnpm build-all
+pnpm build:all
 
 # 然后启动服务端渲染服务器
 pnpm build:ssr
@@ -73,6 +73,7 @@ pnpm build:ssr
 
 ## todo
 
-- [ ] 优化服务端渲染首加载没有css的问题
+- [x] 优化服务端渲染首加载css闪屏的问题
 - [ ] 增加service-worker
 - [ ] 使用copy插件，manifest文件复制到dist目录
+- [ ] 主动构建全部页面, 发布github pages

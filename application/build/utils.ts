@@ -5,5 +5,6 @@ export const VERSION = `${npm_package_version}`
 export const VERSION_TIME = `${npm_package_version}@${Date.now()}`
 
 export const MANIFEST_NAME = 'manifest.json'
+export const BUILD_MANIFEST_NAME = 'rsbuild-manifest.json'
 
 export const SSR_RENDER_FILE = join(__dirname, '../src/renders/SSRRender.tsx')

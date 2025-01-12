@@ -1,8 +1,7 @@
-import { RouteObject } from 'react-router'
-
 import { LoadingFallback, ErrorBoundary } from '@/components'
+import type { RouteObject } from 'react-router'
 
-export const routes: RouteObject[] = [
+export const routes: Array<RouteObject> = [
   {
     path: '/',
     errorElement: <ErrorBoundary />,
@@ -10,26 +9,31 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        lazy: () => import(/* webpackChunkName: "indexpage" */ '../pages/Index')
+        lazy: () => import(/* webpackChunkName: "indexpage" */ '../pages/Index'),
+        chunkName: 'indexpage'
       },
       {
         path: 'home',
-        lazy: () => import(/* webpackChunkName: "home" */ '../pages/Home')
+        lazy: () => import(/* webpackChunkName: "home" */ '../pages/Home'),
+        chunkName: 'home'
       },
       {
         path: 'performance',
-        lazy: () => import(/* webpackChunkName: "PerformanceContrast" */ '../pages/PerformanceContrast')
+        lazy: () => import(/* webpackChunkName: "performance" */ '../pages/PerformanceContrast'),
+        chunkName: 'performance'
       },
       {
         path: 'about',
         children: [
           {
             index: true,
-            lazy: () => import(/* webpackChunkName: "about" */ '../pages/About')
+            lazy: () => import(/* webpackChunkName: "about" */ '../pages/About'),
+            chunkName: 'about'
           },
           {
             path: ':id',
-            lazy: () => import(/* webpackChunkName: "about" */ '../pages/About')
+            lazy: () => import(/* webpackChunkName: "about" */ '../pages/About'),
+            chunkName: 'about'
           }
         ]
       }

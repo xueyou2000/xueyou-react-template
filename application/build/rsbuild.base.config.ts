@@ -1,7 +1,7 @@
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { BaseConfig } from '@framework/build'
 
-import { MANIFEST_NAME, SSR_RENDER_FILE, VERSION } from './utils'
+import { BUILD_MANIFEST_NAME, MANIFEST_NAME, SSR_RENDER_FILE, VERSION } from './utils'
 
 const config = defineConfig({
   environments: {
@@ -15,7 +15,8 @@ const config = defineConfig({
         }
       },
       output: {
-        target: 'web'
+        target: 'web',
+        manifest: BUILD_MANIFEST_NAME
       },
       html: {
         template: './index.html',
@@ -31,7 +32,7 @@ const config = defineConfig({
                 publicPath: false,
                 append: false,
                 attrs: {
-                  href: `${process.env.CLIENT_ASSET_PREFIX}/${MANIFEST_NAME}`,
+                  href: `${process.env.CLIENT_ASSET_PREFIX}${MANIFEST_NAME}`,
                   ref: 'manifest'
                 }
               }

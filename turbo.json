@@ -7,8 +7,6 @@
       "cache": true
     },
     "build:all": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"],
       "cache": true
     },
     "preview": {},

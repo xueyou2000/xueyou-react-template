@@ -14,8 +14,7 @@ const config = defineConfig({
       },
       output: {
         assetPrefix: process.env.CLIENT_ASSET_PREFIX || '/',
-        legalComments: 'none',
-        manifest: 'rsbuild-manifest.json'
+        legalComments: 'none'
         // polyfill: 'usage'
         // externals: {
         //   react: 'React',

@@ -20,7 +20,6 @@ const appContextStore = create<AppContextState>()(
       theme: 'auto',
       isHydrated: false,
       setTheme: (theme: ThemeColor) => {
-        console.log('>>> setTheme', theme)
         set({ theme })
       },
       setIsHydrated: (isHydrated: boolean) => {
