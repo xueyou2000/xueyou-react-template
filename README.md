@@ -3,6 +3,8 @@
 > 注意 `lint-staged` 只会检查 git 暂存区(staged)的文件，而不是所有文件。如果历史文件有lint错误，请手动执行`npm run lint`
 > 并且 `lint-staged` 会自动尝试修复代码, 比如格式化
 
+预览: [github pages](https://xueyou2000.github.io/xueyou-react-template/)
+
 本模板使用技术(使用最新技术):
 
 - 构建： Turborepo, RsBuild, PNPM多仓管理
@@ -79,6 +81,7 @@ pnpm build:ssr
 
 > 注意： 由于whistle代理不支持像nginx一样，优先寻找.html后缀作为页面内容，所以需要手动配置代理。就如这里的performance路由一样。
 > 当然，为了完美，你也可以修改路由配置，给每一个路由配置一个 `path: 'performance.html'` 的路由配置，就能直接访问到服务端渲染的html内容。
+> 由于 github pages支持nginx一样的代理，所以可以直接访问
 
 ```bash
 # 构建产物, 唯一的区别是env不同，CLIENT_ASSET_PREFIX会改为github仓库的名称
@@ -92,3 +95,5 @@ pnpm build:ssr:github
 ^xueyou.com/xueyou-react-template/performance$  file://<D:/playground/xueyou-react-template/application/dist/performance.html>
 ^xueyou.com/xueyou-react-template/*** file://D:/playground/xueyou-react-template/application/dist/$1
 ```
+
+[![Star History Chart](https://api.star-history.com/svg?repos=xueyou2000/xueyou-react-template&type=Date)
