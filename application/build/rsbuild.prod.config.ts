@@ -1,5 +1,7 @@
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin'
+import { InjectManifest } from '@aaroon/workbox-rspack-plugin'
+import { join } from 'node:path'
 
 import baseConfig from './rsbuild.base.config'
 
@@ -47,6 +49,12 @@ const config = defineConfig({
   },
   tools: {
     rspack(config, { appendPlugins }) {
+      appendPlugins(
+        new InjectManifest({
+          swSrc: join(__dirname, '../src/sw.config.ts'),
+          swDest: 'service-worker.js' // 默认为 'service-worker.js'
+        })
+      )
       if (process.env.RSDOCTOR) {
         appendPlugins(
           new RsdoctorRspackPlugin({

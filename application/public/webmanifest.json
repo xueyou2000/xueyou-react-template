@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest.json",
+  "name": "xueyou-react-template",
+  "short_name": "xueyou-react-template",
+  "description": "react + react-router + ssr + pnpm + ts + rsbuild",
+  "icons": [
+    {
+      "src": "/icons/128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/screenshot1-wide.jpg",
+      "type": "image/jpeg",
+      "sizes": "1126x497",
+      "form_factor": "wide"
+    }
+  ],
+  "start_url": ".",
+  "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#4DBA87",
+  "orientation": "landscape-primary"
+}

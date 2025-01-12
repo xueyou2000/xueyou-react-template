@@ -74,6 +74,5 @@ pnpm build:ssr
 ## todo
 
 - [x] 优化服务端渲染首加载css闪屏的问题
-- [ ] 增加service-worker
-- [ ] 使用copy插件，manifest文件复制到dist目录
+- [x] 增加service-worker, manifest
 - [ ] 主动构建全部页面, 发布github pages

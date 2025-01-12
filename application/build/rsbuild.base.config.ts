@@ -1,7 +1,7 @@
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { BaseConfig } from '@framework/build'
 
-import { BUILD_MANIFEST_NAME, MANIFEST_NAME, SSR_RENDER_FILE, VERSION } from './utils'
+import { BUILD_MANIFEST_NAME, SSR_RENDER_FILE, VERSION } from './utils'
 
 const config = defineConfig({
   environments: {
@@ -22,23 +22,24 @@ const config = defineConfig({
         template: './index.html',
         title() {
           return process.env.TITLE || ''
-        },
-        tags: [
-          (tags) => {
-            return [
-              ...tags,
-              {
-                tag: 'link',
-                publicPath: false,
-                append: false,
-                attrs: {
-                  href: `${process.env.CLIENT_ASSET_PREFIX}${MANIFEST_NAME}`,
-                  ref: 'manifest'
-                }
-              }
-            ]
-          }
-        ]
+        }
+        // 非常奇怪，manifest写在此处就不生效，必须写在html文件内
+        // tags: [
+        //   (tags) => {
+        //     return [
+        //       {
+        //         tag: 'link',
+        //         publicPath: true,
+        //         append: false,
+        //         attrs: {
+        //           ref: 'manifest',
+        //           href: `${process.env.CLIENT_ASSET_PREFIX}${MANIFEST_NAME}`
+        //         }
+        //       },
+        //       ...tags
+        //     ]
+        //   }
+        // ]
       }
     },
     ssr: {
