@@ -2,7 +2,7 @@ import { PropsWithChildren, StrictMode } from 'react'
 import { HelmetProvider, Helmet, HelmetServerState } from 'react-helmet-async'
 
 import { useAppContext } from '@/context/AppContext'
-import { isDevMode } from '@/constants/env'
+import { assetPrefix, isDevMode } from '@/constants/env'
 
 import '@/assets/styles/reset.scss'
 import '@/assets/styles/themes/index.scss'
@@ -17,7 +17,7 @@ export interface RootProps {
 if (!isDevMode) {
   if (global.navigator && 'serviceWorker' in global.navigator) {
     global.navigator.serviceWorker
-      .register('/service-worker.js')
+      .register(`${assetPrefix}service-worker.js`)
       .then((registration) => {
         console.log('ServiceWorker registration successful with scope: ', registration.scope)
       })

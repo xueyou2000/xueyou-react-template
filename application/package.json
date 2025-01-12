@@ -21,7 +21,8 @@
     "dev:ssr": "env-cmd -e dev -r ./envs.js tsx ./build/ssr/ssr-preview-server.ts",
     "build:ssr": "env-cmd -e prod -r ./envs.js tsx ./build/ssr/ssr-prod-server.ts",
     "analyze": "env-cmd -e prod -r ./envs.js cross-env RSDOCTOR=1 rsbuild build -c ./build/rsbuild.prod.config.ts  --environment web",
-    "preview": "rsbuild preview"
+    "preview": "rsbuild preview",
+    "build:github": "env-cmd -e github -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts --environment web"
   },
   "files": [
     "lib",

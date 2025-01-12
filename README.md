@@ -71,6 +71,16 @@ pnpm build:ssr
 
 > 这只是一个用于演示的例子，实际项目中，可以改造express， 保留一个api服务，用于编译对应路径的html内容
 
+### 7. 配置whistle代理预览
+
+```bash
+pnpm build:github
+
+# whistle代理配置, 具体路径自行替换
+^xueyou.com/xueyou-react-template/$  file://<D:/playground/xueyou-react-template/application/dist/index.html>
+^xueyou.com/xueyou-react-template/*** file://D:/playground/xueyou-react-template/application/dist/$1
+```
+
 ## todo
 
 - [x] 优化服务端渲染首加载css闪屏的问题

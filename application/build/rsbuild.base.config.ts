@@ -1,7 +1,7 @@
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { BaseConfig } from '@framework/build'
 
-import { BUILD_MANIFEST_NAME, SSR_RENDER_FILE, VERSION } from './utils'
+import { BUILD_MANIFEST_NAME, CLIENT_ASSET_PREFIX, SSR_RENDER_FILE, VERSION } from './utils'
 
 const config = defineConfig({
   environments: {
@@ -16,7 +16,23 @@ const config = defineConfig({
       },
       output: {
         target: 'web',
-        manifest: BUILD_MANIFEST_NAME
+        manifest: BUILD_MANIFEST_NAME,
+        copy: [
+          {
+            from: 'webmanifest.json',
+            to: 'webmanifest.json',
+            transform(input) {
+              const content = input.toString()
+              // content.replace(/BASE_URL/g, CLIENT_ASSET_PREFIX)
+
+              // const json = JSON.parse(content)
+              // // 改写 manifest start_url
+              // json.start_url = CLIENT_ASSET_PREFIX
+              // json.scope = CLIENT_ASSET_PREFIX
+              return content.replace(/{BASE_URL}/g, CLIENT_ASSET_PREFIX)
+            }
+          }
+        ]
       },
       html: {
         template: './index.html',

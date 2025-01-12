@@ -5,30 +5,31 @@
   "description": "react + react-router + ssr + pnpm + ts + rsbuild",
   "icons": [
     {
-      "src": "/icons/128x128.png",
+      "src": "{BASE_URL}icons/128x128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "/icons/512x512.png",
+      "src": "{BASE_URL}icons/512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "/icons/512x512.png",
+      "src": "{BASE_URL}icons/512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "/screenshot1-wide.jpg",
+      "src": "{BASE_URL}screenshot1-wide.jpg",
       "type": "image/jpeg",
       "sizes": "1126x497",
       "form_factor": "wide"
     }
   ],
-  "start_url": ".",
+  "start_url": "{BASE_URL}",
+  "scope": "{BASE_URL}",
   "display": "fullscreen",
   "background_color": "#000000",
   "theme_color": "#4DBA87",

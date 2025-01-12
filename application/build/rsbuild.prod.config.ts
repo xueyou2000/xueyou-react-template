@@ -4,6 +4,7 @@ import { InjectManifest } from '@aaroon/workbox-rspack-plugin'
 import { join } from 'node:path'
 
 import baseConfig from './rsbuild.base.config'
+import { CLIENT_ASSET_PREFIX } from './utils'
 
 const config = defineConfig({
   environments: {
@@ -15,36 +16,41 @@ const config = defineConfig({
         // ]
       },
       output: {
-        assetPrefix: process.env.CLIENT_ASSET_PREFIX || '/',
+        target: 'web',
+        assetPrefix: CLIENT_ASSET_PREFIX,
         legalComments: 'none'
         // polyfill: 'usage'
         // externals: {
         //   react: 'React',
-        //   'react-dom': 'ReactDOM'
+        //   'react-dom': 'ReactDOM',
+        //   'react-dom/client': 'ReactDOM'
         // }
-      },
-      html: {
-        // tags: [
-        //   {
-        //     tag: 'script',
-        //     publicPath: false,
-        //     append: false,
-        //     attrs: {
-        //       src: 'https://unpkg.com/react-umd@19.0.0/dist/react.umd.js',
-        //       defer: true
-        //     }
-        //   },
-        //   {
-        //     tag: 'script',
-        //     publicPath: false,
-        //     append: false,
-        //     attrs: {
-        //       src: 'https://unpkg.com/react-umd@19.0.0/dist/react-dom.umd.js',
-        //       defer: true
-        //     }
-        //   }
-        // ]
       }
+      // html: {
+      //   // React19开始不提供UMD版本
+      //   tags: [
+      //     {
+      //       tag: 'script',
+      //       publicPath: false,
+      //       append: false,
+      //       attrs: {
+      //         src: 'https://esm.sh/react@19.0.0',
+      //         type: 'module',
+      //         defer: true
+      //       }
+      //     },
+      //     {
+      //       tag: 'script',
+      //       publicPath: false,
+      //       append: false,
+      //       attrs: {
+      //         src: 'https://esm.sh/react-dom@19.0.0',
+      //         type: 'module',
+      //         defer: true
+      //       }
+      //     }
+      //   ]
+      // }
     }
   },
   tools: {
@@ -64,6 +70,13 @@ const config = defineConfig({
             }
           })
         )
+      }
+    }
+  },
+  performance: {
+    chunkSplit: {
+      forceSplitting: {
+        common: /node_modules[\\/](react(?!-icons)|react-dom|react-router)/
       }
     }
   }

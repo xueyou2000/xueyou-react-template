@@ -30,5 +30,8 @@ module.exports = {
     OUT_DIR: 'dist',
     /** 是否ts类型检查(启用会比较耗时) */
     TYPE_CHECK: false
+  }),
+  github: Object.assign(base(), {
+    CLIENT_ASSET_PREFIX: '/xueyou-react-template/'
   })
 }
