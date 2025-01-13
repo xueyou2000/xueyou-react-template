@@ -75,8 +75,9 @@ const config = defineConfig({
   },
   performance: {
     chunkSplit: {
+      strategy: 'custom',
       forceSplitting: {
-        common: /node_modules[\\/](react(?!-icons)|react-dom|react-router)/
+        common: /node_modules[\\/](react|react-dom|scheduler|react-router|react-helmet-async|react-fast-compare)[\\/]/
       }
     }
   }

@@ -1,6 +1,7 @@
 /*eslint-env node*/
 /*global process:false*/
 import express from 'express'
+import compression from 'compression'
 import { join } from 'node:path'
 import type { Request, Response, NextFunction } from 'express'
 import { readFile } from 'node:fs/promises'
@@ -40,6 +41,21 @@ export async function preview() {
       next()
     }
   })
+
+  // 使用compression中间件
+  app.use(
+    compression({
+      level: 6, // 压缩级别，范围是1-9，9为最高压缩率
+      threshold: '1kb', // 只有当响应体大于指定阈值时才进行压缩
+      filter: (req, res) => {
+        // 自定义过滤逻辑
+        if (req.headers['x-no-compression']) {
+          return false // 如果请求头包含'x-no-compression'，则不进行压缩
+        }
+        return compression.filter(req, res) // 使用默认的过滤逻辑
+      }
+    })
+  )
 
   app.use(express.static('dist'))
 
