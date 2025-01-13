@@ -1,5 +1,7 @@
-import { Link as RouterLink, LoaderFunctionArgs, useLoaderData } from 'react-router'
+import { NavLink as RouterLink, LoaderFunctionArgs, useLoaderData } from 'react-router'
 import React from 'react'
+
+import { Spinner } from '@/components'
 
 import './index.scss'
 
@@ -47,7 +49,7 @@ export default function Index() {
             <RouterLink to='/performance'>Performance</RouterLink>
           </li>
           <li>
-            <RouterLink to='/about'>About</RouterLink>
+            <RouterLink to='/about'>{({ isPending }) => <span>About {isPending && <Spinner />}</span>}</RouterLink>
           </li>
         </ul>
       </menu>
