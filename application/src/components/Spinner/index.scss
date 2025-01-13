@@ -1,5 +1,6 @@
 .spinner {
   display: inline-block;
+  vertical-align: middle;
 
   .fa-spin {
     animation: spin 1s infinite linear; // 旋转动画

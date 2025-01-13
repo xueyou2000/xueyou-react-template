@@ -10,8 +10,6 @@ export interface AppContextState {
   setTheme: (theme: ThemeColor) => void
   /** 是否已水合 */
   isHydrated: boolean
-  /** 设置水合 */
-  setIsHydrated: (isHydrated: boolean) => void
 }
 
 const appContextStore = create<AppContextState>()(
@@ -21,9 +19,6 @@ const appContextStore = create<AppContextState>()(
       isHydrated: false,
       setTheme: (theme: ThemeColor) => {
         set({ theme })
-      },
-      setIsHydrated: (isHydrated: boolean) => {
-        set({ isHydrated })
       }
     }),
     {

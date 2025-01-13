@@ -4,6 +4,7 @@ import { TabKey } from './types'
 import { SlowList } from './SlowList'
 import { OptimizedTab } from './OptimizedTab'
 import { NormalTab } from './NormalTab'
+import { Nav } from '../Index/Nav'
 
 import './index.scss'
 
@@ -54,12 +55,12 @@ export default function PerformanceContrast() {
     []
   )
 
-  console.log(`PerformanceContrast render count=[${count}]`)
-
   return (
-    <div className='performance-contrast-page'>
+    <div className='performance-contrast-page page-layout'>
+      <Nav />
+
       <h1>性能对比</h1>
-      <button className='count-btn' type='button' onClick={() => setCount(count + 1)}>
+      <button className='btn' type='button' onClick={() => setCount(count + 1)}>
         count: {count}
       </button>
       <ul className='list'>

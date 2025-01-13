@@ -1,4 +1,6 @@
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router'
+import { LoaderFunctionArgs, useLoaderData } from 'react-router'
+
+import { Nav } from '../Index/Nav'
 
 import './index.scss'
 
@@ -21,23 +23,11 @@ export default function Home() {
   const data = useLoaderData() as LoaderData
 
   return (
-    <div className='home-page'>
-      <h1>Home {data?.date}</h1>
-      <p>预加载数据 {data?.url}</p>
+    <div className='home-page page-layout'>
+      <Nav />
 
-      <menu>
-        <ul>
-          <li>
-            <Link to='/'>Index</Link>
-          </li>
-          <li>
-            <Link to='/home'>Home</Link>
-          </li>
-          <li>
-            <Link to='/about'>About</Link>
-          </li>
-        </ul>
-      </menu>
+      <h1>Home</h1>
+      <p>获取loader数据: {JSON.stringify(data || {})}</p>
     </div>
   )
 }

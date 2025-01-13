@@ -2,23 +2,5 @@
 
 .home-page {
   color: var(--text-primary);
-
-  @include responsive(
-    (
-      'width': (
-        100%,
-        80%,
-        70%,
-        60%,
-        50%
-      ),
-      'font-size': (
-        14px,
-        16px,
-        18px,
-        20px,
-        24px
-      )
-    )
-  );
+  font-size: var(--text-base);
 }

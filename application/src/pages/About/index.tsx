@@ -1,5 +1,7 @@
 import { use, Usable } from 'react'
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router'
+import { LoaderFunctionArgs, useLoaderData } from 'react-router'
+
+import { Nav } from '../Index/Nav'
 
 import './index.scss'
 
@@ -50,32 +52,21 @@ export default function About() {
   // Await组件不支持react19, react19请直接使用 use(reviews) 获取数组. see https://reactrouter.com/how-to/suspense#1-return-a-promise-from-loader
 
   return (
-    <div className='about-page'>
+    <div className='about-page page-layout'>
+      <Nav />
+
+      <h1>关于</h1>
+
+      <p>date: {date}</p>
+      <p>url: {url}</p>
       <p>reviews: {reviews}</p>
+      <p>aboutId: {aboutId ?? '通过访问/about/123 路由查看'}</p>
       {/* <Suspense fallback={<div>数据加载...</div>}>
         <Await resolve={reviews} errorElement={<div>Could not load reviews 😬</div>}>
           {(resolvedReviews) => <div>{JSON.stringify(resolvedReviews)}</div>}
         </Await>
         <Await2 resolve={reviews}>{(resolvedReviews) => <p>reviews: {resolvedReviews}</p>}</Await2>
       </Suspense> */}
-
-      <h1>About {date}</h1>
-      <p>{aboutId}</p>
-      <p>预加载数据 {url}</p>
-
-      <menu>
-        <ul>
-          <li>
-            <Link to='/'>Index</Link>
-          </li>
-          <li>
-            <Link to='/home'>Home</Link>
-          </li>
-          <li>
-            <Link to='/about'>About</Link>
-          </li>
-        </ul>
-      </menu>
     </div>
   )
 }

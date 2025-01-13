@@ -27,6 +27,15 @@ export async function startDevServer() {
   const rsbuild = await createRsbuild({
     rsbuildConfig: content
   })
+
+  // 开发模式,每次构建后重新使用最新的 manifest
+  rsbuild.onDevCompileDone(async ({ isFirstCompile }) => {
+    // 排除初次构建,此时开发服务器还未成功启动,无法访问
+    if (!isFirstCompile) {
+      manifest = await getDevManifestJson(rsbuildServer.port)
+    }
+  })
+
   const app = express()
 
   // Create Rsbuild DevServer instance

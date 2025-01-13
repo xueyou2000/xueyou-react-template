@@ -1,9 +1,10 @@
-import { NavLink as RouterLink, LoaderFunctionArgs, useLoaderData } from 'react-router'
-import React from 'react'
+import { LoaderFunctionArgs, useLoaderData } from 'react-router'
+import React, { useEffect } from 'react'
 
-import { Spinner } from '@/components'
+import { Nav } from './Nav'
 
 import './index.scss'
+import { VERSION_TIME } from '@/constants/env'
 
 interface LoaderData {
   url: string
@@ -25,34 +26,28 @@ function BuggyCounter() {
     throw new Error('我崩溃了！')
   }
 
-  return <button onClick={() => setCount(count + 1)}>计数: {count}</button>
+  return (
+    <button className='btn' onClick={() => setCount(count + 1)}>
+      点我5此触发崩溃: {count}
+    </button>
+  )
 }
 
 export default function Index() {
   const data = useLoaderData() as LoaderData
 
-  return (
-    <div className='index-page'>
-      <h1>Index {data?.url}</h1>
-      <button className='btn'>按钮</button>
-      <BuggyCounter />
+  useEffect(() => {
+    console.log('版本: ', VERSION_TIME)
+  }, [])
 
-      <menu>
-        <ul>
-          <li>
-            <RouterLink to='/'>Index</RouterLink>
-          </li>
-          <li>
-            <RouterLink to='/home'>Home</RouterLink>
-          </li>
-          <li>
-            <RouterLink to='/performance'>Performance</RouterLink>
-          </li>
-          <li>
-            <RouterLink to='/about'>{({ isPending }) => <span>About {isPending && <Spinner />}</span>}</RouterLink>
-          </li>
-        </ul>
-      </menu>
+  return (
+    <div className='index-page page-layout'>
+      <Nav />
+
+      <h1>主页</h1>
+      <p>获取loader数据: {JSON.stringify(data || {})}</p>
+
+      <BuggyCounter />
     </div>
   )
 }

@@ -17,7 +17,7 @@ export async function setupClientApp(routes: RouteObject[]) {
     const isClientRender = childNodes?.length === 1 && childNodes[0]?.nodeType === 8
 
     if (!isClientRender) {
-      // 服务端水合渲染需处理lazy路由, 注意此处是异步的，必须要加载完成。否则水合时谁有2份一样的dom
+      // 服务端水合渲染需处理lazy路由, 注意此处是异步的，必须要加载完成。否则水合时会有2份一样的dom
       routes = await fixLazyRoutes(routes, assetPrefix)
     }
     const router = createBrowserRouter(routes, { basename: `${assetPrefix}` })

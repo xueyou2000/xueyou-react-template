@@ -1,7 +1,7 @@
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { BaseConfig } from '@framework/build'
 
-import { BUILD_MANIFEST_NAME, CLIENT_ASSET_PREFIX, SSR_RENDER_FILE, VERSION } from './utils'
+import { BUILD_MANIFEST_NAME, CLIENT_ASSET_PREFIX, SSR_RENDER_FILE, VERSION, VERSION_TIME } from './utils'
 
 const config = defineConfig({
   environments: {
@@ -11,7 +11,8 @@ const config = defineConfig({
           index: './src/index.tsx'
         },
         define: {
-          'process.env.VERSION': JSON.stringify(`${VERSION}`)
+          'process.env.VERSION': JSON.stringify(`${VERSION}`),
+          'process.env.VERSION_TIME': JSON.stringify(`${VERSION_TIME}`)
         }
       },
       output: {

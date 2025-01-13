@@ -1,8 +1,6 @@
 @use '@/assets/styles/mixins' as *;
 
 .performance-contrast-page {
-  padding: 20px;
-
   .count-btn {
     margin-bottom: 20px;
     padding: 10px 20px;
@@ -17,7 +15,7 @@
   }
 
   .list {
-    margin-bottom: 20px;
+    margin-block: 20px;
     color: var(--text-secondary);
     list-style: circle;
     list-style-position: inside;
@@ -25,6 +23,7 @@
 
   .flex-row {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 
     .flex-1 {
