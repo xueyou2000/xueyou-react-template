@@ -118,7 +118,6 @@ export function createFetchRequest(req: ExpressRequest) {
     init.body = req.body
   }
 
-  console.log('>>> url.href', url.href)
   return new Request(url.href, init)
 }
 

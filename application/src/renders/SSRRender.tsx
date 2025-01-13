@@ -1,4 +1,5 @@
-import { renderToString } from 'react-dom/server'
+import { Writable } from 'node:stream'
+import { renderToPipeableStream } from 'react-dom/server'
 import { createStaticHandler, createStaticRouter, StaticHandlerContext, StaticRouterProvider } from 'react-router'
 
 import { RouteCommonProps } from '@/types'
@@ -23,7 +24,7 @@ export async function renderHTMLByRequest(props: SSRRenderProps & { fetchRequest
     const context = (await handler.query(fetchRequest)) as StaticHandlerContext
     const router = createStaticRouter(handler.dataRoutes, context)
 
-    const html = renderToString(
+    const html = await renderHtmlPromise(
       <Root helmetContext={helmetContext} isSSR>
         <StaticRouterProvider router={router} context={context}></StaticRouterProvider>
       </Root>
@@ -34,6 +35,33 @@ export async function renderHTMLByRequest(props: SSRRenderProps & { fetchRequest
     console.error('服务端渲染失败', error)
     return ''
   }
+}
+
+/**
+ * 流式渲染内容, 传统的renderToString方法不能正常处理Suspense, lazy组件
+ */
+export function renderHtmlPromise(children: React.ReactNode) {
+  return new Promise<string>((resolve, reject) => {
+    let htmlChunkData = ''
+    const writableStream = new Writable({
+      write(chunk, encoding, callback) {
+        htmlChunkData += chunk.toString()
+        callback()
+      }
+    })
+    const stream = renderToPipeableStream(children, {
+      onAllReady() {
+        stream.pipe(writableStream)
+      },
+      onShellError(err) {
+        reject(err)
+      }
+    })
+    writableStream.on('finish', () => {
+      resolve(htmlChunkData)
+    })
+    writableStream.on('error', reject)
+  })
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

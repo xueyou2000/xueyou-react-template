@@ -13,8 +13,7 @@ export async function ssrRender() {
   const htmlTemplate = await readFile(join(distDir, 'index.html'), 'utf-8')
   const manifest = await getProdManifestJson(distDir)
 
-  let paths = await SSRRenderModule.getRoutePaths()
-  paths = paths.filter((path) => path !== '/')
+  const paths = await SSRRenderModule.getRoutePaths()
 
   consola.info('开始批量构建: ', paths)
 
@@ -29,7 +28,8 @@ export async function ssrRender() {
         return
       }
       consola.success(`写入构建HTML: ${pathname}`)
-      await writeFile(join(distDir, `${pathname}.html`), html)
+      const filename = pathname === '/' ? 'index' : pathname
+      await writeFile(join(distDir, `${filename}.html`), html)
     })
   )
 
