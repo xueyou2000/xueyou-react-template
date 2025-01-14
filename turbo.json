@@ -7,22 +7,30 @@
       "cache": true
     },
     "build:all": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"]
     },
     "build:github": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"]
     },
     "build:ssr:github": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"]
     },
     "preview": {},
     "analyze": {},
-    "dev:ssr": {},
-    "build:ssr": {},
+    "dev:ssr": {
+      "dependsOn": ["^build"]
+    },
+    "build:ssr": {
+      "dependsOn": ["^build"]
+    },
     "lint": {},
     "stub": {},
     "dev": {
-      "cache": true
+      "cache": true,
+      "dependsOn": ["^build"]
     }
   }
 }

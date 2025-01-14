@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 
 import { VERSION_TIME } from '@/constants/env'
 import { useAppContext } from '@/context/AppContext'
+import { Button } from '@packages/components'
 
 import { Nav } from './Nav'
 
@@ -28,21 +29,13 @@ function BuggyCounter() {
     throw new Error('我崩溃了！')
   }
 
-  return (
-    <button type='button' className='btn' onClick={() => setCount(count + 1)}>
-      点我5此触发崩溃: {count}
-    </button>
-  )
+  return <Button onClick={() => setCount(count + 1)}>点我5此触发崩溃: {count}</Button>
 }
 
 function ToggleTheme() {
   const theme = useAppContext((state) => state.theme)
   const setTheme = useAppContext((state) => state.setTheme)
-  return (
-    <button type='button' className='btn' onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-      切换主题
-    </button>
-  )
+  return <Button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>切换主题</Button>
 }
 
 export default function Index() {
