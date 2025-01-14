@@ -1,32 +1,45 @@
 import { Spinner } from '@/components'
-import { NavLink as RouterLink } from 'react-router'
+import type { ReactNode } from 'react'
+import { memo } from 'react'
+import { NavLinkRenderProps, NavLink as RouterLink } from 'react-router'
+
 import './common.scss'
 
-export function Nav() {
+// 定义 CustomLink 的 props 类型
+interface CustomLinkProps {
+  to: string
+  label: string
+  children?: React.ReactNode | ((props: NavLinkRenderProps) => ReactNode)
+}
+
+// 使用 memo 包裹 CustomLink 组件并添加 displayName
+const CustomLink = memo(function CustomLink({ to, label, children }: CustomLinkProps) {
+  return (
+    <RouterLink to={to} viewTransition aria-label={label} role='link'>
+      {children || label}
+    </RouterLink>
+  )
+})
+
+export const Nav = memo(function Nav() {
   return (
     <nav className='nav'>
       <ul>
         <li>
-          <RouterLink to='/' className={({ isActive }) => (isActive ? 'active' : '')} viewTransition aria-label='首页'>
-            Index
-          </RouterLink>
+          <CustomLink to='/' label='Index' />
         </li>
         <li>
-          <RouterLink to='/home' className={({ isActive }) => (isActive ? 'active' : '')} viewTransition aria-label='主页'>
-            Home
-          </RouterLink>
+          <CustomLink to='/home' label='Home' />
         </li>
         <li>
-          <RouterLink to='/performance' className={({ isActive }) => (isActive ? 'active' : '')} viewTransition aria-label='性能'>
-            Performance
-          </RouterLink>
+          <CustomLink to='/performance' label='Performance' />
         </li>
         <li>
-          <RouterLink to='/about' className={({ isActive }) => (isActive ? 'active' : '')} viewTransition aria-label='关于'>
+          <CustomLink to='/about' label='About'>
             {({ isPending }) => <span>About {isPending && <Spinner />}</span>}
-          </RouterLink>
+          </CustomLink>
         </li>
       </ul>
     </nav>
   )
-}
+})

@@ -1,10 +1,12 @@
 import { LoaderFunctionArgs, useLoaderData } from 'react-router'
 import React, { useEffect } from 'react'
 
+import { VERSION_TIME } from '@/constants/env'
+import { useAppContext } from '@/context/AppContext'
+
 import { Nav } from './Nav'
 
 import './index.scss'
-import { VERSION_TIME } from '@/constants/env'
 
 interface LoaderData {
   url: string
@@ -27,8 +29,18 @@ function BuggyCounter() {
   }
 
   return (
-    <button className='btn' onClick={() => setCount(count + 1)}>
+    <button type='button' className='btn' onClick={() => setCount(count + 1)}>
       点我5此触发崩溃: {count}
+    </button>
+  )
+}
+
+function ToggleTheme() {
+  const theme = useAppContext((state) => state.theme)
+  const setTheme = useAppContext((state) => state.setTheme)
+  return (
+    <button type='button' className='btn' onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+      切换主题
     </button>
   )
 }
@@ -42,12 +54,27 @@ export default function Index() {
 
   return (
     <div className='index-page page-layout'>
-      <Nav />
+      <header>
+        <Nav />
+      </header>
 
-      <h1>主页</h1>
-      <p>获取loader数据: {JSON.stringify(data || {})}</p>
+      <main>
+        <h1>主页</h1>
+        <section>
+          <p>获取loader数据: {JSON.stringify(data || {})}</p>
+          <BuggyCounter />
+          <ToggleTheme />
+        </section>
+      </main>
 
-      <BuggyCounter />
+      <aside>
+        <h2>相关库</h2>
+        <ul>
+          <li>react v19</li>
+          <li>react-router v7</li>
+          <li>rsbuild</li>
+        </ul>
+      </aside>
     </div>
   )
 }
