@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { memo, useTransition, useMemo } from 'react'
 
 import { TabItemProps, TabProps } from './types'
-import { useControllState } from '@/utils'
+import { useControllerState } from '@packages/utils'
 
 // 由于 onClick 函数永远传递新的， 所以这里使用memo优化无意义
 function TabItemInner(props: TabItemProps) {
@@ -31,7 +31,7 @@ const TabItem = memo(TabItemInner)
 function OptimizedTabInner(props: TabProps) {
   const { defaultValue, tabs } = props
   // TODO: 这里不能是受控组件，否则会触发不必要的重新渲染
-  const [value, setValue] = useControllState(defaultValue, props)
+  const [value, setValue] = useControllerState(defaultValue, props)
 
   const currentTab = useMemo(() => tabs.find((tab) => tab.key === value), [value, tabs])
 

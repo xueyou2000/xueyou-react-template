@@ -10,7 +10,10 @@ function isFunction(value: unknown) {
 
 type GetValue<T> = () => T
 
-export function useControllState<T, R = T>(
+/**
+ * 受控状态
+ */
+export function useControllerState<T, R = T>(
   defaultValue: T | GetValue<T>,
   option?: {
     defaultValue?: T | GetValue<T>

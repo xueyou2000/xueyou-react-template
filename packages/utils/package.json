@@ -1,0 +1,47 @@
+{
+  "name": "@packages/utils",
+  "version": "0.0.1",
+  "description": "React Utils",
+  "author": "XueYou",
+  "license": "ISC",
+  "packageManager": "pnpm@9.0.0",
+  "main": "src/index.ts",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "files": [
+    "lib",
+    "README.md"
+  ],
+  "scripts": {
+    "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
+    "lint": "npm run lint:eslint && npm run lint:stylelint"
+  },
+  "keywords": [
+    "React",
+    "Utils"
+  ],
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.6.7"
+  },
+  "stylelint": {
+    "extends": "../../framework/lint-set/stylelint.config.mjs",
+    "ignorePath": "../../framework/lint-set/.stylelintignore"
+  },
+  "devDependencies": {
+    "@framework/lint-set": "workspace:^",
+    "@types/react": "^19.0.2"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "typescript": "^5.7.2"
+  }
+}

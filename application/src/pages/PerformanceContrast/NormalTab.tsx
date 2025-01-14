@@ -1,12 +1,12 @@
 // 未经过优化的tab组件
 import classNames from 'classnames'
 
-import { useControllState } from '@/utils'
+import { useControllerState } from '@packages/utils'
 import { TabProps } from './types'
 
 export function NormalTab(props: TabProps) {
   const { defaultValue, tabs } = props
-  const [value, setValue] = useControllState(defaultValue, props)
+  const [value, setValue] = useControllerState(defaultValue, props)
 
   const currentTab = tabs.find((tab) => tab.key === value)
 

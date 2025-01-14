@@ -19,6 +19,7 @@
 - [x] 优化服务端渲染首加载css闪屏的问题
 - [x] 增加service-worker, manifest
 - [x] 主动构建全部页面, 发布github pages
+- [ ] 实现类似于`webpack.DllPlugin`和`webpack.DllReferencePlugin`的插件
 
 ## 使用方式
 

@@ -45,6 +45,9 @@ importers:
 
   application:
     dependencies:
+      '@packages/utils':
+        specifier: workspace:^
+        version: link:../packages/utils
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -269,6 +272,22 @@ importers:
       typescript-eslint:
         specifier: ^8.19.0
         version: 8.19.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
+
+  packages/utils:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      typescript:
+        specifier: ^5.7.2
+        version: 5.7.2
+    devDependencies:
+      '@framework/lint-set':
+        specifier: workspace:^
+        version: link:../../framework/lint-set
+      '@types/react':
+        specifier: ^19.0.2
+        version: 19.0.2
 
 packages:
 
