@@ -4,7 +4,7 @@ import { InjectManifest } from '@aaroon/workbox-rspack-plugin'
 import { join } from 'node:path'
 
 import baseConfig from './rsbuild.base.config'
-import { CLIENT_ASSET_PREFIX } from './utils'
+import { CLIENT_ASSET_PREFIX, pluginSourceMap } from './utils'
 
 const config = defineConfig({
   environments: {
@@ -25,7 +25,8 @@ const config = defineConfig({
         //   'react-dom': 'ReactDOM',
         //   'react-dom/client': 'ReactDOM'
         // }
-      }
+      },
+      plugins: [pluginSourceMap({ sourceMapDist: './dist/sourcemap' })]
       // html: {
       //   // React19开始不提供UMD版本
       //   tags: [
@@ -77,7 +78,7 @@ const config = defineConfig({
     chunkSplit: {
       strategy: 'custom',
       forceSplitting: {
-        common: /node_modules[\\/](react|react-dom|scheduler|react-router|react-helmet-async|react-fast-compare)[\\/]/
+        'vendor-bundle': /node_modules[\\/](react|react-dom|scheduler|react-router|react-helmet-async|react-fast-compare)[\\/]/
       }
     }
   }
