@@ -6,7 +6,6 @@ import ts from 'typescript-eslint'
 import { fixupConfigRules } from '@eslint/compat'
 import pluginPrettier from 'eslint-plugin-prettier'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
-// import react from 'eslint-plugin-react'
 import reactJsx from 'eslint-plugin-react/configs/jsx-runtime.js'
 import react from 'eslint-plugin-react/configs/recommended.js'
 

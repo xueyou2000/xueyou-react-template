@@ -11,13 +11,6 @@
     "require": "./index.cjs",
     "import": "./index.mjs"
   },
-  "files": [
-    "eslint.config.mjs",
-    "index.cjs",
-    "index.mjs",
-    "stylelint.config.mjs",
-    "README.md"
-  ],
   "scripts": {
     "lint": "eslint ."
   },

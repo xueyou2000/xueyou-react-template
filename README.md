@@ -67,8 +67,8 @@ pnpm dev:ssr
 ### 6. 服务端渲染(生产模式)
 
 ```bash
-# 首先构建全部
-pnpm build:all
+# 首先构建
+pnpm build
 
 # 然后启动服务端渲染服务器
 pnpm build:ssr

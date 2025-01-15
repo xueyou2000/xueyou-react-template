@@ -11,24 +11,22 @@
     "**/*.scss"
   ],
   "scripts": {
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
-    "lint": "npm run lint:eslint && npm run lint:stylelint",
     "dev": "env-cmd -e dev -r ./envs.js rsbuild dev -c ./build/rsbuild.dev.config.ts --environment web",
-    "build": "env-cmd -e prod -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts --environment web",
-    "build:all": "env-cmd -e prod -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts",
-    "inspect": "env-cmd -e prod -r ./envs.js rsbuild inspect -c ./build/rsbuild.prod.config.ts --environment web",
     "dev:ssr": "env-cmd -e dev -r ./envs.js tsx ./build/ssr/ssr-preview-server.ts",
+    "build": "env-cmd -e prod -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts",
     "build:ssr": "env-cmd -e prod -r ./envs.js tsx ./build/ssr/ssr-prod-server.ts",
-    "analyze": "env-cmd -e prod -r ./envs.js cross-env RSDOCTOR=1 rsbuild build -c ./build/rsbuild.prod.config.ts  --environment web",
-    "preview": "rsbuild preview",
     "build:github": "env-cmd -e github -r ./envs.js rsbuild build -c ./build/rsbuild.prod.config.ts",
-    "build:ssr:github": "env-cmd -e github -r ./envs.js tsx ./build/ssr/ssr-render.ts"
+    "build:ssr:github": "env-cmd -e github -r ./envs.js tsx ./build/ssr/ssr-render.ts",
+    "inspect": "env-cmd -e prod -r ./envs.js rsbuild inspect -c ./build/rsbuild.prod.config.ts --environment web",
+    "analyze": "env-cmd -e prod -r ./envs.js cross-env RSDOCTOR=1 rsbuild build -c ./build/rsbuild.prod.config.ts  --environment web",
+    "preview": "rsbuild preview"
   },
   "files": [
-    "lib",
+    "dist",
     "package.json",
-    "tsconfig.json",
     "README.md"
   ],
   "keywords": [
@@ -43,12 +41,14 @@
     "node": ">=18.17.0",
     "npm": ">=9.6.7"
   },
-  "stylelint": {
-    "extends": "../framework/lint-set/stylelint.config.mjs",
-    "ignorePath": "../framework/lint-set/.stylelintignore"
+  "peerDependencies": {
+    "@rsbuild/core": "^1.0.13",
+    "@rsbuild/plugin-react": "^1.0.3",
+    "@rsbuild/plugin-sass": "^1.0.1",
+    "@rsbuild/plugin-type-check": "^1.0.1",
+    "@rsdoctor/rspack-plugin": "^0.4.5"
   },
   "devDependencies": {
-    "@aaroon/workbox-rspack-plugin": "^0.3.2",
     "@framework/build": "workspace:^",
     "@framework/lint-set": "workspace:^",
     "@react-router/dev": "^7.1.1",
@@ -58,6 +58,7 @@
     "@rsbuild/plugin-type-check": "^1.2.0",
     "@rsdoctor/rspack-plugin": "^0.4.12",
     "@rspack/core": "^1.1.8",
+    "@aaroon/workbox-rspack-plugin": "^0.3.2",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
@@ -69,26 +70,25 @@
     "fast-glob": "^3.3.2",
     "react-scan": "^0.0.54",
     "stylelint": "^16.12.0",
-    "tsconfig-paths": "^4.2.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2",
-    "workbox-cacheable-response": "^7.3.0",
-    "workbox-core": "^7.3.0",
-    "workbox-expiration": "^7.3.0",
-    "workbox-precaching": "^7.3.0",
-    "workbox-routing": "^7.3.0",
-    "workbox-strategies": "^7.3.0"
+    "typescript": "^5.7.2"
   },
   "dependencies": {
-    "classnames": "^2.5.1",
-    "consola": "^3.3.3",
+    "@packages/utils": "workspace:^",
+    "@packages/components": "workspace:^",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet-async": "^2.0.5",
     "react-icons": "^5.4.0",
     "react-router": "^7.1.1",
     "zustand": "^5.0.2",
-    "@packages/utils": "workspace:^",
-    "@packages/components": "workspace:^"
+    "classnames": "^2.5.1",
+    "consola": "^3.3.3",
+    "workbox-cacheable-response": "^7.3.0",
+    "workbox-core": "^7.3.0",
+    "workbox-expiration": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0"
   }
 }

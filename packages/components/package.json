@@ -16,11 +16,9 @@
     "README.md"
   ],
   "scripts": {
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
-    "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "build": "echo 'rslib build'",
-    "dev": "echo 'rslib build --watch'",
     "storybook": "storybook dev",
     "build:storybook": "storybook build"
   },
@@ -56,8 +54,10 @@
     "storybook-react-rsbuild": "^0.1.8"
   },
   "peerDependencies": {
+    "classnames": "^2.5.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
     "typescript": "^5.7.2"
   },
   "dependencies": {

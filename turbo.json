@@ -6,30 +6,31 @@
       "outputs": ["dist/**"],
       "cache": true
     },
-    "build:all": {
-      "cache": true,
-      "dependsOn": ["^build"]
-    },
     "build:github": {
-      "cache": true,
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "cache": true
     },
     "build:ssr:github": {
-      "cache": true,
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "cache": true
     },
     "preview": {},
     "analyze": {},
     "dev:ssr": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "cache": false
     },
     "build:ssr": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "cache": true
     },
     "lint": {},
     "stub": {},
     "dev": {
-      "cache": true,
+      "cache": false,
       "dependsOn": ["^build"]
     }
   }

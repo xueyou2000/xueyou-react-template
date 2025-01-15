@@ -18,11 +18,9 @@
     "README.md"
   ],
   "scripts": {
-    "lint:eslint": "eslint .",
-    "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "build": "echo 'rslib build'",
-    "dev": "echo 'rslib build --watch'"
+    "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}"
   },
   "keywords": [
     "React",
