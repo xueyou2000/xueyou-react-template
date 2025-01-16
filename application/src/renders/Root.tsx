@@ -29,7 +29,7 @@ if (!isDevMode) {
 
 export function Root(props: PropsWithChildren<RootProps>) {
   const { helmetContext, children } = props
-  const { theme } = useAppContext()
+  const theme = useAppContext((state) => state.theme)
 
   return (
     <HelmetProvider context={helmetContext}>
