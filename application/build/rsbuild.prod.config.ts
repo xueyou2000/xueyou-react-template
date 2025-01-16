@@ -1,10 +1,11 @@
+import { InjectManifest } from '@aaroon/workbox-rspack-plugin'
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin'
-import { InjectManifest } from '@aaroon/workbox-rspack-plugin'
 import { join } from 'node:path'
 
+import { pluginSourceMap } from './plugins'
 import baseConfig from './rsbuild.base.config'
-import { CLIENT_ASSET_PREFIX, pluginSourceMap } from './utils'
+import { CLIENT_ASSET_PREFIX } from './constants'
 
 const config = defineConfig({
   environments: {

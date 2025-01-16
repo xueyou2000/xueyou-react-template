@@ -1,9 +1,10 @@
-import { __dirname, getProdManifestJson, require, serverRender } from './ssr-base'
-import { join } from 'node:path'
-import { readFile, writeFile } from 'node:fs/promises'
 import { consola } from 'consola'
+import { readFile, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import { __dirname, getProdManifestJson, require, serverRender } from './ssr-base'
+
+import { CLIENT_ASSET_PREFIX } from '../constants'
 import { SSRRenderModuleType, SSRRenderOptions } from './types'
-import { CLIENT_ASSET_PREFIX } from '../utils'
 
 const distDir = join(__dirname, '../../dist')
 

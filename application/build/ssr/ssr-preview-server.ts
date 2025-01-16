@@ -1,6 +1,6 @@
 import { createRsbuild, loadConfig } from '@rsbuild/core'
+import type { NextFunction, Request, Response } from 'express'
 import express from 'express'
-import type { Request, Response, NextFunction } from 'express'
 import { join } from 'node:path'
 
 import { __dirname, getDevManifestJson, serverRenderExpress } from './ssr-base'

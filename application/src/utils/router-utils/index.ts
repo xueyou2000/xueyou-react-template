@@ -12,7 +12,7 @@ export async function isMatchRoute(props: RouteCommonProps, assetPrefix: string)
       return false
     }
 
-    const { routes } = await import('../../routes/routes')
+    const { routes } = await import('../../routes')
     const matchRouteList = matchRoutes(routes, url, assetPrefix)?.filter((m) => m.route.path !== '*')
 
     return !!matchRouteList?.length

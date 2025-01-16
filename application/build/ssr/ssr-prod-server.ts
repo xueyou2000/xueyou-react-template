@@ -1,10 +1,10 @@
 /*eslint-env node*/
 /*global process:false*/
-import express from 'express'
 import compression from 'compression'
-import { join } from 'node:path'
-import type { Request, Response, NextFunction } from 'express'
+import type { NextFunction, Request, Response } from 'express'
+import express from 'express'
 import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 
 import { __dirname, getProdManifestJson, require, serverRenderExpress } from './ssr-base'
 import { ManifestJson, SSRRenderModuleType } from './types'

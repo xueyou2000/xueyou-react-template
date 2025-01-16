@@ -18,7 +18,7 @@ export async function renderHTMLByRequest(props: SSRRenderProps & { fetchRequest
   const { fetchRequest, helmetContext } = props
 
   try {
-    const { routes } = await import('../routes/routes')
+    const { routes } = await import('../routes')
 
     const handler = createStaticHandler(routes, { basename: assetPrefix })
     const context = (await handler.query(fetchRequest)) as StaticHandlerContext
@@ -66,7 +66,7 @@ export function renderHtmlPromise(children: React.ReactNode) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function matchPreCssUrl(pathname: string, manifestJson: any) {
-  const { routes } = await import('../routes/routes')
+  const { routes } = await import('../routes')
   const matchRoute = matchBestRoute(routes, pathname, assetPrefix)
   if (!matchRoute || !matchRoute.route?.chunkName) {
     return ''
@@ -89,7 +89,7 @@ export function getPreCssUrl(allFiles: string[], chunkName: string) {
 }
 
 export async function getRoutePaths() {
-  const { routes } = await import('../routes/routes')
+  const { routes } = await import('../routes')
   return flattenRoutes(routes)
 }
 

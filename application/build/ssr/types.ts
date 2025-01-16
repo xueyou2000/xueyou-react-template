@@ -1,4 +1,5 @@
 import { RsbuildInstance } from '@rsbuild/core'
+
 import type { SSRRenderProps } from '../../src/renders/SSRRender'
 import type { RouteCommonProps } from '../../src/types'
 

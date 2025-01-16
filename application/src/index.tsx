@@ -1,6 +1,6 @@
 import { scan } from 'react-scan'
 
-import { routes } from './routes/routes'
+import { routes } from './routes'
 import { isDevMode, hasWindowMode } from './constants/env'
 import { setupClientApp } from './renders/ClientRender'
 
