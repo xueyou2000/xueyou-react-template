@@ -123,7 +123,7 @@ export function createFetchRequest(req: ExpressRequest) {
 
 export async function getDevManifestJson(port: number): Promise<ManifestJson> {
   // 获取 manifestJson
-  const manifest = await fetch(`http:localhost:${port}${CLIENT_ASSET_PREFIX}${BUILD_MANIFEST_NAME}`)
+  const manifest = await fetch(`http://localhost:${port}${CLIENT_ASSET_PREFIX}${BUILD_MANIFEST_NAME}`)
   try {
     const manifestJson = await manifest.json()
     return manifestJson || {}

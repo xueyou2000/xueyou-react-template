@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs, useLoaderData } from 'react-router'
 import React, { useEffect } from 'react'
 
-import { VERSION_TIME } from '@/constants/env'
+import { VERSION } from '@/constants/env'
 import { useAppContext } from '@/context/AppContext'
 import { Button } from '@packages/components'
 
@@ -42,7 +42,7 @@ export default function Index() {
   const data = useLoaderData() as LoaderData
 
   useEffect(() => {
-    console.log('版本: ', VERSION_TIME)
+    console.log('版本: ', VERSION)
   }, [])
 
   return (
