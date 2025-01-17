@@ -1,27 +1,48 @@
 # React项目模板
 
+<br />
+<p align="center">
+    <img src="https://github.com/xueyou2000/xueyou-react-template/raw/main/application/public/icon.svg" alt="Logo" width="156" height="156">
+  <h2 align="center" style="font-weight: 600">XueYou React Template</h2>
+
+  <p align="center">
+    紧跟最新版的React项目模板, 支持服务端预渲染
+    <br />
+    <a href="https://github.com/xueyou2000/xueyou-react-template/" target="blank"><strong>🌎 GitHub仓库</strong></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://xueyou2000.github.io/xueyou-react-template/" target="blank"><strong>📦️ 在线预览</strong></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://github.com/xueyou2000/i18n-framework-template" target="blank"><strong>🌎 国际化多入口版</strong></a>
+  </p>
+  <p align="center">
+    <a href="https://github.com/xueyou2000/xueyou-react-template/README.md" target="blank"><strong>🇨🇳 简体中文</strong></a>
+    <br />
+  </p>
+</p>
+
+## 特性
+
+- ⚙️ 构建： `Turborepo`, `RsBuild`, PNPM多仓管理
+- 🚀 前端框架: `React` V19
+- 🚀 性能优化: `React Scan`
+- 📦 状态管理: `Zustand`
+- 🛣️ 路由: `React Router` V7
+- 🎨 样式: `SCSS`
+- 📊 图标: `React Icons`
+- 🛠️ 服务端预渲染
+- 📃 代码规范: `ESLint`, `Stylelint`, `Prettier`, `Husky`, `Commitlint`, `Branchlint`
+- 📱 `PWA` 应用
+- 🚀 `Service Worker` 缓存
+
 > 注意 `lint-staged` 只会检查 git 暂存区(staged)的文件，而不是所有文件。如果历史文件有lint错误，请手动执行`npm run lint`
 > 并且 `lint-staged` 会自动尝试修复代码, 比如格式化
 
-预览: [github pages](https://xueyou2000.github.io/xueyou-react-template/)
-
-本模板使用技术(使用最新技术):
-
-- 构建： Turborepo, RsBuild, PNPM多仓管理
-- 前端框架: React V19
-- 性能优化: React Scan
-- 状态管理: Zustand
-- 路由: React Router V7
-- 样式: SCSS
-- 图标: React Icons
-- 代码规范: ESLint, Stylelint, Prettier, Husky, Commitlint, Branchlint
+## Todo List
 
 - [x] 优化服务端渲染首加载css闪屏的问题
 - [x] 增加service-worker, manifest
 - [x] 主动构建全部页面, 发布github pages
 - [ ] 实现类似于`webpack.DllPlugin`和`webpack.DllReferencePlugin`的插件
 
-## 使用方式
+## ⚙️ 使用方式
 
 ### 1. 安装依赖
 

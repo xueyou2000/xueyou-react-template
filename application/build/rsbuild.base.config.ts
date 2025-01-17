@@ -1,7 +1,7 @@
 import { defineConfig, mergeRsbuildConfig } from '@rsbuild/core'
 import { BaseConfig } from '@framework/build'
 
-import { BUILD_MANIFEST_NAME, CLIENT_ASSET_PREFIX, SSR_RENDER_FILE, VERSION, VERSION_TIME } from './constants'
+import { BUILD_MANIFEST_NAME, CLIENT_ASSET_PREFIX, MANIFEST_NAME, SSR_RENDER_FILE, VERSION, VERSION_TIME } from './constants'
 
 const config = defineConfig({
   environments: {
@@ -37,6 +37,10 @@ const config = defineConfig({
       },
       html: {
         template: './index.html',
+        templateParameters: {
+          MANIFEST_NAME,
+          CLIENT_ASSET_PREFIX
+        },
         title() {
           return process.env.TITLE || ''
         }
