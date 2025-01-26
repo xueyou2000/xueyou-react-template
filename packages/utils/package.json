@@ -20,7 +20,8 @@
   "scripts": {
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint .",
-    "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}"
+    "lint:stylelint": "stylelint ./**/*.{scss,css,less,sass}",
+    "docs": "typedoc"
   },
   "keywords": [
     "React",
@@ -41,7 +42,9 @@
     "@rsbuild/plugin-sass": "^1.1.2",
     "@rslib/core": "^0.3.1",
     "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2"
+    "@types/react-dom": "^19.0.2",
+    "typedoc": "^0.27.6",
+    "typedoc-plugin-markdown": "^4.4.1"
   },
   "peerDependencies": {
     "react": "^19.0.0",

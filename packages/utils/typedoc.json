@@ -1,0 +1,25 @@
+{
+  "$schema": "https://typedoc-plugin-markdown.org/schema.json",
+  "entryPoints": ["src/index.ts"], // 指定入口文件或目录
+  "out": "docs", // 输出目录
+  // "theme": "node_modules/typedoc-plugin-markdown/dist", // 使用默认主题
+  // "plugin": ["typedoc-plugin-markdown"],
+  "name": "@packages/utils", // 项目名称
+  "readme": "README.md", // 读取 README 文件
+  "cleanOutputDir": true,
+  "includeVersion": true, // 包含版本号
+  "excludePrivate": true, // 排除私有成员
+  "excludeProtected": false, // 是否排除受保护成员
+  "excludeInternal": true, // 排除内部成员
+  "validation": true,
+  "githubPages": true,
+  "exclude": ["node_modules/**"],
+  "categorizeByGroup": true, // 按组分类
+  "sort": ["kind", "instance-first"], // 排序方式
+  "watch": false, // 是否监视文件变化
+  // "hidePageHeader": false, // 不打印页眉
+  // "hideBreadcrumbs": false, // 不要打印面包屑
+  // "hidePageTitle": false, // 不打印页面标题
+  // "outputFileStrategy": "modules", // 输出策略, members | modules
+  "gitRevision": "main" // Git 分支或标签
+}

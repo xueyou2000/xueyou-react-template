@@ -4,6 +4,9 @@ type MediaQueries = 'mobile' | 'tablet' | 'laptop' | 'desktop' | 'widescreen'
 
 const screenTypes: MediaQueries[] = ['mobile', 'tablet', 'laptop', 'desktop', 'widescreen']
 
+/**
+ * 媒体查询配置
+ */
 const queries: Record<MediaQueries, string> = {
   mobile: '(max-width: 720px)',
   tablet: '(min-width: 721px) and (max-width: 1024px)',
@@ -12,6 +15,10 @@ const queries: Record<MediaQueries, string> = {
   widescreen: '(min-width: 1921px)'
 }
 
+/**
+ * 媒体查询hooks
+ * @returns 但会当前宽度匹配的媒体设备 mobile | desktop | ...
+ */
 function useMatchMedia(): MediaQueries {
   const [matches, setMatches] = useState<MediaQueries>(getCurrentMatchMedia())
 
